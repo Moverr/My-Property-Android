@@ -44,6 +44,8 @@ public class SplashActivity extends AppCompatActivity {
                         }
                     }
 
+                    //TODO: Get me to the Next Activity
+
                 }catch (Exception em){
                     Log.e("Splash",em.toString());
                 }finally {
@@ -54,5 +56,19 @@ public class SplashActivity extends AppCompatActivity {
         splashTimer.start();
 
     }
+
+    @Override
+    protected  void onPause(){
+        super.onPause();
+        m_bpaused = true;
+    }
+
+    @Override
+    protected  void onResume(){
+        super.onResume();;
+        m_bpaused = false;
+    }
+
+    
 
 }
