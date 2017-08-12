@@ -6,6 +6,7 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 
 
@@ -69,6 +70,10 @@ public class SplashActivity extends AppCompatActivity {
         m_bpaused = false;
     }
 
-    
-
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+         super.onKeyDown(keyCode, event);
+        m_bSplashActive = false;
+        return  true;
+    }
 }
