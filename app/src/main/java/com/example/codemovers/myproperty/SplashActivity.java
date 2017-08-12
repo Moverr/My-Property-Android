@@ -11,6 +11,7 @@ import android.view.KeyEvent;
 import android.view.View;
 
 import com.example.codemovers.myproperty.authentication.LoginActivity;
+import com.example.codemovers.myproperty.authentication.helper.Logger;
 
 
 public class SplashActivity extends AppCompatActivity {
@@ -27,18 +28,19 @@ public class SplashActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+//        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
+//                        .setAction("Action", null).show();
+//            }
+//        });
 
         Thread splashTimer = new Thread(){
-            public void  Run(){
+            public void  run(){
                 try{
+                    Logger.system_log("SPLASH","INSIDE THE RUN METHOD");
                     //todo: wait loop
                     long ms = 0;
                     while (m_bSplashActive && ms < m_dwSplashTime){
@@ -53,7 +55,7 @@ public class SplashActivity extends AppCompatActivity {
                     startActivity(intent);
 
                 }catch (Exception em){
-                    Log.e("Splash",em.toString());
+                    Logger.system_log("SPLASH EXCEPTION",em.toString());
                 }finally {
                     finish();
                 }
