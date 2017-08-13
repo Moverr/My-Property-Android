@@ -1,34 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
-    tools:context="com.example.codemovers.myproperty.SplashActivity"
-    tools:showIn="@layout/activity_splash"
-    android:background="@color/background_orange"
-    >
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        app:srcCompat="@mipmap/logo"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="94dp" />
 
-    <EditText
-        android:id="@+id/editText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context="com.example.codemovers.myproperty.SplashActivity"
+        tools:showIn="@layout/activity_splash"
+        android:background="@color/background_orange">
+
+
+    <TextView
+    android:id="@+id/editText"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        android:text="MY PROPERTY"
-        android:textAlignment="center"
-        tools:layout_editor_absoluteX="85dp"
-        tools:layout_editor_absoluteY="377dp" />
+    android:inputType="textPersonName"
+    android:text="MY PROPERTY"
+    android:textAlignment="center"
+        android:textSize="50dp"
+        android:textColor="#000"
 
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    </RelativeLayout>
 
-</android.support.constraint.ConstraintLayout>

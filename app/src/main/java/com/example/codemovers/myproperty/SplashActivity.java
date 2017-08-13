@@ -15,7 +15,7 @@ import com.example.codemovers.myproperty.authentication.helper.Logger;
 
 public class SplashActivity extends AppCompatActivity {
 
-    long m_dwSplashTime = 3000;
+    long m_dwSplashTime = 5000;
     boolean m_bpaused = false;
     boolean  m_bSplashActive = true;
 
@@ -52,7 +52,7 @@ public class SplashActivity extends AppCompatActivity {
 
                     //TODO: Get me to the Next Activity
                     Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
-                //    startActivity(intent);
+                   startActivity(intent);
 
                 }catch (Exception em){
                     Logger.system_log("SPLASH EXCEPTION",em.toString());
