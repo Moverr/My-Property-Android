@@ -2,12 +2,8 @@ package com.example.codemovers.myproperty;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
 import android.view.KeyEvent;
-import android.view.View;
 
 import com.example.codemovers.myproperty.authentication.LoginActivity;
 import com.example.codemovers.myproperty.authentication.helper.Logger;
@@ -51,13 +47,13 @@ public class SplashActivity extends AppCompatActivity {
                     }
 
                     //TODO: Get me to the Next Activity
-                    Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
-                   startActivity(intent);
+                   Intent intent = new Intent(SplashActivity.this,LoginActivity.class);
+                    startActivity(intent);
 
                 }catch (Exception em){
                     Logger.system_log("SPLASH EXCEPTION",em.toString());
                 }finally {
-                  // finish();
+                  finish();
                 }
             }
         };
