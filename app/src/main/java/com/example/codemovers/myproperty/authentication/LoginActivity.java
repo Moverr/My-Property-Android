@@ -2,10 +2,8 @@ package com.example.codemovers.myproperty.authentication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.KeyEvent;
 
 import com.example.codemovers.myproperty.R;
-import com.example.codemovers.myproperty.authentication.helper.Logger;
 
 
 public class LoginActivity extends AppCompatActivity {

@@ -10,7 +10,7 @@
         app:layout_behavior="@string/appbar_scrolling_view_behavior"
         tools:context="com.example.codemovers.myproperty.SplashActivity"
         tools:showIn="@layout/activity_splash"
-        android:background="@color/background_blue">
+        android:background="@color/background_D26565">
 
 
     <ImageView
@@ -23,7 +23,7 @@
     android:textAlignment="center"
         android:textSize="50dp"
         android:textColor="#000"
-        android:src="@drawable/l2"
+        android:src="@drawable/logo"
 
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
