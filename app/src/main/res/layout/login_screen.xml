@@ -69,6 +69,7 @@
         android:textSize="40dp" android:padding="10dp"
         android:layout_marginTop="10dp"
         android:fontFamily="roboto"
+        android:cursorVisible="true"
 
         />
 
@@ -82,6 +83,7 @@
         android:textAlignment="center"
         android:layout_marginTop="30dp"
         android:fontFamily="roboto"
+        android:cursorVisible="true"
         />
 
     <TextView
@@ -112,6 +114,7 @@
             android:layout_marginTop="10dp"
             android:fontFamily="roboto"
             android:drawableLeft="@drawable/facebook"
+            android:cursorVisible="true"
             />
 
         <!-- Login with Google Plus -->
