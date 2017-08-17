@@ -2,7 +2,11 @@ package com.example.codemovers.myproperty.authentication;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Window;
+
+
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
+
 
 import com.example.codemovers.myproperty.R;
 
