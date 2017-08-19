@@ -104,33 +104,47 @@
         android:orientation="vertical"
         >
 
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/facebook_signin"
-            android:text="Sign IN with Facebook"
-            android:textColor="#fff"
-            android:textSize="40dp" android:padding="10dp"
-            android:layout_marginTop="10dp"
-            android:fontFamily="roboto"
-            android:drawableLeft="@drawable/facebook"
-            android:cursorVisible="true"
-            />
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/facebook_signin"-->
+            <!--android:text="Sign IN with Facebook"-->
+            <!--android:textColor="#fff"-->
+            <!--android:textSize="40dp" android:padding="10dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:fontFamily="roboto"-->
+            <!--android:drawableLeft="@drawable/facebook"-->
+            <!--android:cursorVisible="true"-->
+            <!--/>-->
 
         <!-- Login with Google Plus -->
-        <Button
+        <!--<Button-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:background="@drawable/google_signin"-->
+            <!--android:text="Sign IN with Google"-->
+            <!--android:textColor="#fff"-->
+            <!--android:fontFamily="roboto"-->
+            <!--android:textSize="40dp" android:padding="10dp"-->
+            <!--android:layout_marginTop="10dp"-->
+            <!--android:drawableLeft="@drawable/google"-->
+            <!--android:layout_marginBottom="100dp"-->
+            <!--/>-->
+
+
+        <com.facebook.login.widget.LoginButton
+            android:id="@+id/faacebooklogin_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/google_signin"
-            android:text="Sign IN with Google"
-            android:textColor="#fff"
-            android:fontFamily="roboto"
-            android:textSize="40dp" android:padding="10dp"
+            android:layout_gravity="center_horizontal"
             android:layout_marginTop="10dp"
-            android:drawableLeft="@drawable/google"
             android:layout_marginBottom="100dp"
-            />
+            android:padding="100dp"
+            android:height="200dp"
+            android:text="SIGN IN WITH FACEBOOK"
+            android:textSize="40dp"
 
+            />
 
     </LinearLayout>
 
