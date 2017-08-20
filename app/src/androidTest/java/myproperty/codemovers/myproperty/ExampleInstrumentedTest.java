@@ -1,4 +1,4 @@
-package com.example.codemovers.myproperty;
+package myproperty.codemovers.myproperty;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.codemovers.myapplication", appContext.getPackageName());
+        assertEquals("myproperty.codemovers.myproperty", appContext.getPackageName());
     }
 }

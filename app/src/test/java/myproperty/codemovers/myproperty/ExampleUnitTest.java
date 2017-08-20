@@ -1,4 +1,4 @@
-package com.example.codemovers.myproperty;
+package myproperty.codemovers.myproperty;
 
 import org.junit.Test;
 
