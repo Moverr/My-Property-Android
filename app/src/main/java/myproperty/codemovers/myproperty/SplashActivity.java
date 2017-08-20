@@ -1,6 +1,7 @@
 package myproperty.codemovers.myproperty;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -93,12 +94,14 @@ public class SplashActivity extends AppCompatActivity {
         mControlsView = findViewById(R.id.fullscreen_content_controls);
         mContentView = findViewById(R.id.fullscreen_content);
 
-
         // Set up the user interaction to manually show or hide the system UI.
         mContentView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 toggle();
+
+
+
             }
         });
 
@@ -106,6 +109,9 @@ public class SplashActivity extends AppCompatActivity {
         // operations to prevent the jarring behavior of controls going away
         // while interacting with the UI.
         findViewById(R.id.dummy_button).setOnTouchListener(mDelayHideTouchListener);
+
+
+
     }
 
     @Override
@@ -119,11 +125,14 @@ public class SplashActivity extends AppCompatActivity {
     }
 
     private void toggle() {
-        if (mVisible) {
-            hide();
-        } else {
-            show();
-        }
+        Intent intent = new Intent(this,DashboardActivity.class);
+        startActivity(intent);
+
+//        if (mVisible) {
+//            hide();
+//        } else {
+//            show();
+//        }
     }
 
     private void hide() {
