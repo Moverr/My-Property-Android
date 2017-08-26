@@ -3,6 +3,12 @@ package myproperty.codemovers.myproperty.commons;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
+
+import myproperty.codemovers.myproperty.R;
 
 /**
  * Created by Manny on 8/26/2017.
@@ -23,4 +29,16 @@ public class ActivityBase extends FragmentActivity {
     public void initializeLogging(){
 
     }
+
+    protected boolean SideBarMenuHandler(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+            case R.id.nav_camera:
+                break;
+            default:
+                break;
+        }
+        return true;
+    }
+
 }
