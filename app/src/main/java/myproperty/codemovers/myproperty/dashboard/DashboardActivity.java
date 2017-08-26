@@ -79,7 +79,8 @@ public class DashboardActivity  extends ActivityBase{
 
         if (savedInstanceState == null) {
             FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            FragmentExample example = new FragmentExample();
+            //FragmentExample example = new FragmentExample();
+            PlaceHolderFragment example = new PlaceHolderFragment();
             transaction.replace(R.id.sample_content_fragment,example);
             transaction.commit();
         }
