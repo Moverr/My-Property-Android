@@ -19,9 +19,18 @@ import myproperty.codemovers.myproperty.commons.FragmentBase;
  * Created by Manny on 8/26/2017.
  */
 
-public class PlaceHolderFragment extends FragmentBase {
+public class AllCollectionsFragment extends FragmentBase {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
+
+    private static AllCollectionsFragment instance  = null;
+
+    public static AllCollectionsFragment getInstance(){
+        if(instance == null ){
+            instance = new AllCollectionsFragment();
+        }
+        return instance;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

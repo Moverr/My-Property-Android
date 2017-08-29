@@ -30,15 +30,25 @@ public class ActivityBase extends FragmentActivity {
 
     }
 
-    protected boolean SideBarMenuHandler(MenuItem item) {
+    public boolean SideBarMenuHandler(MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.nav_camera:
-                break;
+
             default:
                 break;
         }
         return true;
     }
+
+    public boolean ActionBarMenuHandler(MenuItem item) {
+        int id = item.getItemId();
+        switch (id){
+
+            default:
+                break;
+        }
+        return true;
+    }
+
 
 }

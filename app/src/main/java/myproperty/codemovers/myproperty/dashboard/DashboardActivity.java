@@ -1,26 +1,25 @@
 package myproperty.codemovers.myproperty.dashboard;
 
-import android.content.Context;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.ActionBarDrawerToggle;
 
 import android.support.v7.widget.Toolbar;
-import android.util.AttributeSet;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
 
 import myproperty.codemovers.myproperty.R;
+import myproperty.codemovers.myproperty.authentication.LoginFragment;
 import myproperty.codemovers.myproperty.commons.ActivityBase;
 
 /**
@@ -30,7 +29,7 @@ import myproperty.codemovers.myproperty.commons.ActivityBase;
 public class DashboardActivity  extends ActivityBase{
     public static final String TAG = "Dashboard Main Activity ";
 
-
+    AllCollectionsFragment allCollectionsFragment;
 
 
     @Override
@@ -40,13 +39,13 @@ public class DashboardActivity  extends ActivityBase{
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.parseColor("#FF64FFB7"));
-        toolbar.setTitle("DID YOU KNOW");
+        toolbar.setTitle("MY PROPERTY ");
 
         // Set On Click Handles to the Menu
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener(){
             @Override
             public boolean onMenuItemClick(MenuItem item) {
-               return SideBarMenuHandler(item);
+               return ActionBarMenuHandler(item);
             }
         });
 
@@ -71,6 +70,12 @@ public class DashboardActivity  extends ActivityBase{
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                return SideBarMenuHandler(item);
+            }
+        });
        // navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener(){);
       //  navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
       //  navigationView.setNavigationItemSelectedListener(this);
@@ -78,26 +83,29 @@ public class DashboardActivity  extends ActivityBase{
 
 
         if (savedInstanceState == null) {
-            FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-            //FragmentExample example = new FragmentExample();
-            PlaceHolderFragment example = new PlaceHolderFragment();
-            transaction.replace(R.id.sample_content_fragment,example);
-            transaction.commit();
+             allCollectionsFragment = AllCollectionsFragment.getInstance();
+            replaceFragment(allCollectionsFragment);
         }
     }
 
 
     @Override
-    protected boolean SideBarMenuHandler(MenuItem item) {
+    public boolean SideBarMenuHandler(MenuItem item) {
         int id = item.getItemId();
         switch (id){
-            case R.id.nav_camera:
+            case R.id.home:
+                allCollectionsFragment = AllCollectionsFragment.getInstance();
+                replaceFragment(allCollectionsFragment);
                 break;
             case R.id.nav_gallery:
                 break;
             case R.id.nav_slideshow:
                 break;
             case R.id.nav_manage:
+                break;
+            case R.id.user_login:
+                LoginFragment loginFragment = new LoginFragment();
+                replaceFragment(loginFragment);
                 break;
             default:
                 break;
@@ -106,6 +114,14 @@ public class DashboardActivity  extends ActivityBase{
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+
+
+    private void replaceFragment(Fragment fragment) {
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.sample_content_fragment,fragment);
+        transaction.commit();
     }
 
     @Override
