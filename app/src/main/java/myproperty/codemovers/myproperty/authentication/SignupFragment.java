@@ -13,16 +13,17 @@ import myproperty.codemovers.myproperty.commons.FragmentBase;
  * Created by Manny on 8/29/2017.
  */
 
-public class LoginFragment extends FragmentBase {
+public class SignupFragment  extends FragmentBase {
 
-    private static LoginFragment instance = null;
+    private static SignupFragment instance = null;
 
-    public static LoginFragment getInstance(){
+    public static SignupFragment getInstance(){
         if(instance == null){
-            instance = new LoginFragment();
+            instance = new SignupFragment();
         }
         return instance;
     }
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,7 +33,7 @@ public class LoginFragment extends FragmentBase {
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.login_screen,container,false);
+        View view = inflater.inflate(R.layout.signup_screen,container,false);
         return view;
 
     }

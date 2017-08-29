@@ -20,6 +20,7 @@ import android.view.View;
 
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.authentication.LoginFragment;
+import myproperty.codemovers.myproperty.authentication.SignupFragment;
 import myproperty.codemovers.myproperty.commons.ActivityBase;
 
 /**
@@ -30,6 +31,8 @@ public class DashboardActivity  extends ActivityBase{
     public static final String TAG = "Dashboard Main Activity ";
 
     AllCollectionsFragment allCollectionsFragment;
+    LoginFragment loginFragment;
+    SignupFragment signupFragment;
 
 
     @Override
@@ -50,8 +53,6 @@ public class DashboardActivity  extends ActivityBase{
         });
 
 
-
-       // setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -76,10 +77,6 @@ public class DashboardActivity  extends ActivityBase{
                 return SideBarMenuHandler(item);
             }
         });
-       // navigationView.setNavigationItemSelectedListener(NavigationView.OnNavigationItemSelectedListener(){);
-      //  navigationView.setNavigationItemSelectedListener((NavigationView.OnNavigationItemSelectedListener) this);
-      //  navigationView.setNavigationItemSelectedListener(this);
-
 
 
         if (savedInstanceState == null) {
@@ -104,8 +101,12 @@ public class DashboardActivity  extends ActivityBase{
             case R.id.nav_manage:
                 break;
             case R.id.user_login:
-                LoginFragment loginFragment = new LoginFragment();
+                loginFragment =  LoginFragment.getInstance();
                 replaceFragment(loginFragment);
+                break;
+            case R.id.user_signup:
+                signupFragment =  SignupFragment.getInstance();
+                replaceFragment(signupFragment);
                 break;
             default:
                 break;
