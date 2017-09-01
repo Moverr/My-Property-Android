@@ -32,15 +32,29 @@ public class EngineCaller {
     // Instantiate the RequestQueue with the cache and network.
     RequestQueue mRequestQueue ;
 
-    public EngineCaller(Context context) {
-        this.context = context;
+    EngineCaller instance;
+    public EngineCaller getInstance(){
+        if(instance == null) {
+            instance = new EngineCaller();
+        }
+        return instance;
     }
+
+
 
     public EngineCaller() {
         cache = new DiskBasedCache(context.getCacheDir(),1024*1924);
         network = new BasicNetwork(new HurlStack());
-        mRequestQueue = new RequestQueue(cache,network);
     }
+
+    public RequestQueue getmRequestQueue() {
+        if(mRequestQueue == null){
+            mRequestQueue = new RequestQueue(cache,network);
+        }
+        return  mRequestQueue;
+    }
+
+
 
     public void startQue(){
         mRequestQueue.start();
@@ -78,8 +92,8 @@ public class EngineCaller {
                 // do something
             }
         });
-        // andd this to the que:: 
-        mRequestQueue.add(stringRequest);
+        // andd this to the que::
+        getmRequestQueue().add(stringRequest);
 
         return "";
     }
