@@ -19,14 +19,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by Manny on 8/31/2017.
+ * Created by mover on 8/31/2017.
  */
 
 public class EngineCaller {
     private static final int PORT = 8080;
     private static final String HOST = "http:localhost:"+PORT+"/";
     private Context context;
-    private String endPoint;
+
     private String url;
 
     // Instantiate the cache
@@ -36,13 +36,6 @@ public class EngineCaller {
     // Instantiate the RequestQueue with the cache and network.
     RequestQueue mRequestQueue ;
 
-    EngineCaller instance;
-    public EngineCaller getInstance(){
-        if(instance == null) {
-            instance = new EngineCaller();
-        }
-        return instance;
-    }
 
 
 
@@ -68,16 +61,9 @@ public class EngineCaller {
     }
 
 
-    public String getEndPoint() {
-        return endPoint;
-    }
-
-    public void setEndPoint(String endPoint) {
-        this.endPoint = endPoint;
-    }
 
     //get URL ::
-    public String getUrl() {
+    public String getUrl(String endPoint) {
         url = this.HOST.concat("/").concat(endPoint);
         return url;
     }

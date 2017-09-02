@@ -14,6 +14,7 @@ import android.widget.Toast;
 
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.commons.FragmentBase;
+import myproperty.codemovers.myproperty.connector.AuthenticationConnector;
 
 /**
  * Created by Manny on 8/29/2017.
@@ -30,6 +31,7 @@ public class LoginFragment extends FragmentBase {
 
     Dialog dialog;
 
+    AuthenticationConnector authenticationConnector;
 
     public static LoginFragment getInstance(){
         if(instance == null){
@@ -66,11 +68,14 @@ public class LoginFragment extends FragmentBase {
             }
         });
 
+
+
         return view;
 
     }
     //TODO: handle Login
     public void handleLogin(){
+        authenticationConnector = AuthenticationConnector.getInstance();
         String _username = username.getText().toString();
         String _password = password.getText().toString();
 
@@ -78,7 +83,7 @@ public class LoginFragment extends FragmentBase {
             Toast.makeText(getContext(), "Fill Blanks ", Toast.LENGTH_LONG).show();
         }else
         {
-
+            authenticationConnector.submitData(getContext(),_username,_password);
         }
 
       //  username =

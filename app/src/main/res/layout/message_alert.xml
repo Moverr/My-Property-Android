@@ -18,7 +18,7 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
 
-            android:layout_weight="100dp"
+
             android:paddingTop="10dp"
             android:text="WARNING  "
             android:textAlignment="center"
