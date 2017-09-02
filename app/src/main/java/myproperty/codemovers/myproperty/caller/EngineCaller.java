@@ -82,9 +82,8 @@ public class EngineCaller {
         return url;
     }
 
-
     //TODO: do Post
-    public static void doPost(Context context, String url, final Map headers){
+    public static void doPost(Context context, String url, final Map headers,Map parameters){
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
@@ -112,27 +111,90 @@ public class EngineCaller {
         queue.add(stringRequest);
     }
 
-   //TODO: do Get
-    public Boolean doGet(){
-
-
-
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, getUrl(), new Response.Listener<String>() {
+    //TODO: do Get
+    public static void doGet(Context context, String url, final Map headers){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                // do something
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                // do something
-            }
-        });
-        // andd this to the que::
-        getmRequestQueue().add(stringRequest);
 
-        return true;
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return super.getParams();
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return super.getHeaders();
+            }
+        };
+        queue.add(stringRequest);
     }
+
+    //TODO: do PUT
+    public static void doPut(Context context, String url, final Map headers){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.PUT, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return super.getParams();
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return super.getHeaders();
+            }
+        };
+        queue.add(stringRequest);
+    }
+
+    //TODO: do DELETE
+    public static void doDelete(Context context, String url, final Map headers){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.DELETE, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return super.getParams();
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return super.getHeaders();
+            }
+        };
+        queue.add(stringRequest);
+    }
+
+
+
+
 
 
 
