@@ -2,6 +2,7 @@ package myproperty.codemovers.myproperty.caller;
 
 import android.content.Context;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Network;
 import com.android.volley.Request;
@@ -13,6 +14,9 @@ import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by Manny on 8/31/2017.
@@ -78,8 +82,40 @@ public class EngineCaller {
         return url;
     }
 
-    // do Get
-    public String doGet(){
+
+    //TODO: do Post
+    public static void doPost(Context context, String url, final Map headers){
+        RequestQueue queue = Volley.newRequestQueue(context);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                return super.getParams();
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+               Map<String,String> params =  headers;
+
+                return super.getHeaders();
+            }
+        };
+        queue.add(stringRequest);
+    }
+
+   //TODO: do Get
+    public Boolean doGet(){
+
+
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET, getUrl(), new Response.Listener<String>() {
             @Override
@@ -95,7 +131,7 @@ public class EngineCaller {
         // andd this to the que::
         getmRequestQueue().add(stringRequest);
 
-        return "";
+        return true;
     }
 
 
