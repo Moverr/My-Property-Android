@@ -11,6 +11,7 @@ import android.os.Handler;
 import android.view.MotionEvent;
 import android.view.View;
 
+import myproperty.codemovers.myproperty.commons.logger.Log;
 import myproperty.codemovers.myproperty.dashboard.DashboardActivity;
 
 /**
@@ -19,14 +20,17 @@ import myproperty.codemovers.myproperty.dashboard.DashboardActivity;
  */
 public class SplashActivity extends Activity {
     private static int SPLASH_TIME_OUT = 3000;
+    private static final String TAG =  "SPLASH";
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Log.v(TAG,"On Create Splash Screen");
         setContentView(R.layout.activity_splash);
         new Handler().postDelayed(
                 new Runnable() {
                     @Override
                     public void run() {
+                        Log.v(TAG,"Starting Dashboard Activity");
                         Intent i = new Intent(SplashActivity.this,DashboardActivity.class);
                         startActivity(i);
                         finish();

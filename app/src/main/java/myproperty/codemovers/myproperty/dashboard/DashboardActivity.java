@@ -23,6 +23,7 @@ import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.authentication.LoginFragment;
 import myproperty.codemovers.myproperty.authentication.SignupFragment;
 import myproperty.codemovers.myproperty.commons.ActivityBase;
+import myproperty.codemovers.myproperty.commons.logger.Log;
 
 /**
  * Created by Manny on 8/26/2017.
@@ -40,7 +41,7 @@ public class DashboardActivity  extends ActivityBase{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
-
+        Log.v(TAG,"On Create ");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.parseColor("#FF64FFB7"));
         toolbar.setTitle("MY PROPERTY ");
@@ -92,6 +93,7 @@ public class DashboardActivity  extends ActivityBase{
         int id = item.getItemId();
         switch (id){
             case R.id.home:
+                Log.v(TAG," starting home fragment ");
                 allCollectionsFragment = AllCollectionsFragment.getInstance();
                 replaceFragment(allCollectionsFragment);
                 break;
@@ -102,10 +104,12 @@ public class DashboardActivity  extends ActivityBase{
             case R.id.nav_manage:
                 break;
             case R.id.user_login:
+                Log.v(TAG," starting login fragment ");
                 loginFragment =  LoginFragment.getInstance();
                 replaceFragment(loginFragment);
                 break;
             case R.id.user_signup:
+                Log.v(TAG," starting signup  fragment ");
                 signupFragment =  SignupFragment.getInstance();
                 replaceFragment(signupFragment);
                 break;
