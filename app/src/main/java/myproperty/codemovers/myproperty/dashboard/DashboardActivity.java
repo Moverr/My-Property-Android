@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 
 import android.support.v7.widget.Toolbar;
 import android.text.Layout;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -23,14 +24,14 @@ import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.authentication.LoginFragment;
 import myproperty.codemovers.myproperty.authentication.SignupFragment;
 import myproperty.codemovers.myproperty.commons.ActivityBase;
-import myproperty.codemovers.myproperty.commons.logger.Log;
+
 
 /**
  * Created by Manny on 8/26/2017.
  */
 
 public class DashboardActivity  extends ActivityBase{
-    public static final String TAG = "Dashboard Main Activity ";
+    public static final String TAG = "DashboardActivity";
 
     AllCollectionsFragment allCollectionsFragment;
     LoginFragment loginFragment;
@@ -41,6 +42,8 @@ public class DashboardActivity  extends ActivityBase{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+
+
         Log.v(TAG,"On Create ");
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setBackgroundColor(Color.parseColor("#FF64FFB7"));

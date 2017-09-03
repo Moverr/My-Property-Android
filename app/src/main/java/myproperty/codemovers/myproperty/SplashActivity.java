@@ -8,10 +8,11 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 
-import myproperty.codemovers.myproperty.commons.logger.Log;
+
 import myproperty.codemovers.myproperty.dashboard.DashboardActivity;
 
 /**
@@ -25,6 +26,7 @@ public class SplashActivity extends Activity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.v(TAG,"On Create Splash Screen");
+
         setContentView(R.layout.activity_splash);
         new Handler().postDelayed(
                 new Runnable() {

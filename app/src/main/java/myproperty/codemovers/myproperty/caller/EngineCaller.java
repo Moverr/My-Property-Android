@@ -1,6 +1,7 @@
 package myproperty.codemovers.myproperty.caller;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
@@ -15,6 +16,8 @@ import com.android.volley.toolbox.HurlStack;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,10 +27,16 @@ import java.util.Map;
 
 public class EngineCaller {
     private static final int PORT = 8080;
-    private static final String HOST = "http:localhost:"+PORT+"/";
+    //private static final String HOST = "http:localhost:"+PORT+"";
+    //private static final String HOST = "10.0.2.2:"+PORT+"";
+    private static final String HOST = "http://10.0.2.2:"+PORT+"";
+    //private static final String HOST = "https://www.google.com/";
+
+
+
     private Context context;
 
-    private String url;
+    private static String url;
 
     // Instantiate the cache
     Cache cache ;
@@ -39,9 +48,15 @@ public class EngineCaller {
 
 
 
-    public EngineCaller() {
-        cache = new DiskBasedCache(context.getCacheDir(),1024*1924);
-        network = new BasicNetwork(new HurlStack());
+    public EngineCaller(Context context) {
+        try{
+            cache = new DiskBasedCache(context.getCacheDir(),1024*1924);
+             network = new BasicNetwork(new HurlStack());
+        }catch (Exception em){
+            Toast.makeText(context, em.getMessage(), Toast.LENGTH_SHORT).show();
+
+        }
+
     }
 
     public RequestQueue getmRequestQueue() {
@@ -63,35 +78,48 @@ public class EngineCaller {
 
 
     //get URL ::
-    public String getUrl(String endPoint) {
-        url = this.HOST.concat("/").concat(endPoint);
+    public  static String getUrl(String endPoint) {
+        url = HOST.concat("/").concat(endPoint);
         return url;
     }
 
     //TODO: do Post
-    public static void doPost(Context context, String url, final Map headers,Map parameters){
+    public static void doPost(final Context context, String url, final Map headers, final JSONObject body){
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                Toast.makeText(context, "  Success", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
             }
         }){
+
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                return super.getParams();
+            public byte[] getBody() throws AuthFailureError {
+
+                try {
+                    String mRequestBody = body.toString();
+                    return mRequestBody.toString().getBytes("utf-8");
+                }
+                catch (Exception e){
+                    return null;
+                }
             }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json;";
+            }
+
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-               Map<String,String> params =  headers;
-
-                return super.getHeaders();
+                return  headers;
             }
         };
         queue.add(stringRequest);
@@ -184,5 +212,5 @@ public class EngineCaller {
 
 
 
-
 }
+

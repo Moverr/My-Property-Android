@@ -63,8 +63,12 @@ public class LoginFragment extends FragmentBase {
         login_button.setOnClickListener(new View.OnClickListener() {
             //TODO: handle login process
             @Override
-            public void onClick(View v) {
-                handleLogin();
+            public void onClick(View v)  {
+                try {
+                    handleLogin();
+                }catch (Exception e){
+
+                }
             }
         });
 
@@ -74,15 +78,16 @@ public class LoginFragment extends FragmentBase {
 
     }
     //TODO: handle Login
-    public void handleLogin(){
+    public void handleLogin() throws Exception{
         authenticationConnector = AuthenticationConnector.getInstance();
         String _username = username.getText().toString();
         String _password = password.getText().toString();
 
         if(_username.isEmpty() || _password.isEmpty()  ){
-            Toast.makeText(getContext(), "Fill Blanks ", Toast.LENGTH_LONG).show();
+            Toast.makeText(this.getContext(), "Fill Blanks ", Toast.LENGTH_LONG).show();
         }else
         {
+            Toast.makeText(this.getContext(), "Testing Me Out ", Toast.LENGTH_SHORT).show();
             authenticationConnector.submitData(getContext(),_username,_password);
         }
 
