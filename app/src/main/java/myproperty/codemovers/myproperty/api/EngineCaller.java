@@ -1,4 +1,4 @@
-package myproperty.codemovers.myproperty.caller;
+package myproperty.codemovers.myproperty.api;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -18,7 +18,6 @@ import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
-import java.util.HashMap;
 import java.util.Map;
 
 /**

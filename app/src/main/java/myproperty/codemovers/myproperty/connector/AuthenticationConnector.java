@@ -3,16 +3,12 @@ package myproperty.codemovers.myproperty.connector;
 import android.content.Context;
 import android.widget.Toast;
 
-import com.android.volley.Cache;
-import com.android.volley.Network;
-import com.android.volley.RequestQueue;
-
 import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import myproperty.codemovers.myproperty.caller.EngineCaller;
+import myproperty.codemovers.myproperty.api.EngineCaller;
 
 /**
  * Created by Manny on 9/2/2017.
