@@ -25,18 +25,9 @@ import java.util.Map;
  */
 
 public class EngineCaller {
-    private static final int PORT = 8080;
-    //private static final String HOST = "http:localhost:"+PORT+"";
-    //private static final String HOST = "10.0.2.2:"+PORT+"";
-    private static final String HOST = "http://10.0.2.2:"+PORT+"";
-    //private static final String HOST = "https://www.google.com/";
 
-
-
-    private Context context;
 
     private static String url;
-
     // Instantiate the cache
     Cache cache ;
     // Set up the network to use HttpURLConnection as the HTTP client.
@@ -78,7 +69,7 @@ public class EngineCaller {
 
     //get URL ::
     public  static String getUrl(String endPoint) {
-        url = HOST.concat("/").concat(endPoint);
+        url =  BaseUrl.getProtocolHttp().concat(BaseUrl.getApiHost()).concat(":").concat(BaseUrl.getPORT()).concat(endPoint);
         return url;
     }
 
