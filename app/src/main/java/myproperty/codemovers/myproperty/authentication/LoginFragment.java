@@ -21,6 +21,8 @@ import myproperty.codemovers.myproperty.connector.AuthenticationConnector;
 public class LoginFragment extends BaseFragment {
 
     private static LoginFragment instance = null;
+
+
     Button login_button, register_button;
 
     SignupFragment signupFragment;
@@ -89,7 +91,6 @@ public class LoginFragment extends BaseFragment {
             authenticationConnector.submitData(getContext(),_username,_password);
         }
 
-      //  username =
     }
 
 

@@ -33,50 +33,33 @@ public class AuthenticationConnector extends  ConnectorBase   {
 
     }
 
-
+    Map HEADERS = new HashMap();
+    Map PARAMS = new HashMap();
+    JSONObject BODY = new JSONObject();
 
     //TODO: Submit Data
     public boolean submitData(Context context,String username, String password) throws  Exception{
 
         if(!username.isEmpty() && !password.isEmpty()){
             //Todo: send message to the server
-
-            String url = caller.getUrl(accountLoginEndpoint);
-
-
+               String url = caller.getUrl(accountLoginEndpoint);
 
                 // Add Headers
-                Map headers = new HashMap();
-                headers.put("Content-Type", "application/json");
+                HEADERS.put("Content-Type", "application/json");
 
-                // Add Params
-                Map params = new HashMap();
-                params.put("username", username);
-                params.put("password", password);
+                // Add Parameters
+                PARAMS.put("username", username);
+                PARAMS.put("password", password);
 
                 //TODO: add jsob object object
-                JSONObject body = new JSONObject();
-                body.put("username",username);
-                body.put("password",password);
-
-
-//            jsonBody.put("username", "firstvalue");
-//            jsonBody.put("password", "secondobject");
-
-
+                BODY.put("username",username);
+                BODY.put("password",password);
 
 
             //TODO: Missing functionality is adding a callback, and failer response
 
-
-
-            // Instantiate the cache
-
-            // Instantiate the RequestQueue with the cache and network.
-          //  RequestQueue mRequestQueue ;
-
-           caller = new EngineCaller(context);
-            caller.doPost(context,url,headers,body);
+            caller = new EngineCaller(context);
+            caller.doPost(context,url,HEADERS,BODY);
 
 
 

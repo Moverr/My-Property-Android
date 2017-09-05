@@ -35,7 +35,15 @@ public class EngineCaller {
     // Instantiate the RequestQueue with the cache and network.
     RequestQueue mRequestQueue ;
 
+    private static EngineCaller instance;
 
+    private static EngineCaller getInstance(Context context){
+        if(instance == null)
+        {
+            instance = new EngineCaller(context);
+        }
+        return  instance;
+    }
 
 
     public EngineCaller(Context context) {
@@ -69,7 +77,7 @@ public class EngineCaller {
 
     //get URL ::
     public  static String getUrl(String endPoint) {
-        url =  BaseUrl.getProtocolHttp().concat(BaseUrl.getApiHost()).concat(":").concat(BaseUrl.getPORT()).concat(endPoint);
+        url =  BaseUrl.getProtocolHttp().concat(BaseUrl.getApiHost()).concat(":").concat(BaseUrl.getPORT()).concat("/").concat(endPoint);
         return url;
     }
 
