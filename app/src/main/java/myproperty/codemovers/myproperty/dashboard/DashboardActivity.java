@@ -22,14 +22,14 @@ import android.view.View;
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.authentication.LoginFragment;
 import myproperty.codemovers.myproperty.authentication.SignupFragment;
-import myproperty.codemovers.myproperty.core.ActivityBase;
+import myproperty.codemovers.myproperty.core.BaseActivity;
 
 
 /**
  * Created by Manny on 8/26/2017.
  */
 
-public class DashboardActivity  extends ActivityBase{
+public class DashboardActivity  extends BaseActivity {
     public static final String TAG = "DashboardActivity";
 
     AllCollectionsFragment allCollectionsFragment;

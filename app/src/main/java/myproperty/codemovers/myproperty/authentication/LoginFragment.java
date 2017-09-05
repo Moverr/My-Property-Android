@@ -11,14 +11,14 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import myproperty.codemovers.myproperty.R;
-import myproperty.codemovers.myproperty.core.FragmentBase;
+import myproperty.codemovers.myproperty.core.BaseFragment;
 import myproperty.codemovers.myproperty.connector.AuthenticationConnector;
 
 /**
  * Created by Manny on 8/29/2017.
  */
 
-public class LoginFragment extends FragmentBase {
+public class LoginFragment extends BaseFragment {
 
     private static LoginFragment instance = null;
     Button login_button, register_button;

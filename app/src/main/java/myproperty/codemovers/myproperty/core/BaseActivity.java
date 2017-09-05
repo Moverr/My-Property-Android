@@ -8,7 +8,7 @@ import android.view.MenuItem;
  * Created by Manny on 8/26/2017.
  */
 
-public class ActivityBase extends FragmentActivity {
+public class BaseActivity extends FragmentActivity {
 
     @Override
     protected void onCreate( Bundle savedInstanceState) {

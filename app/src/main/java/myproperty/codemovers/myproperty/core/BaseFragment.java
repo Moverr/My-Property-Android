@@ -11,7 +11,7 @@ import android.view.ViewGroup;
  * Created by Manny on 8/26/2017.
  */
 
-public class FragmentBase extends Fragment {
+public class BaseFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

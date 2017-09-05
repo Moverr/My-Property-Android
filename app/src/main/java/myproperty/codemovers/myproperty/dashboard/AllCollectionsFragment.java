@@ -12,13 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import myproperty.codemovers.myproperty.R;
-import myproperty.codemovers.myproperty.core.FragmentBase;
+import myproperty.codemovers.myproperty.core.BaseFragment;
 
 /**
  * Created by Manny on 8/26/2017.
  */
 
-public class AllCollectionsFragment extends FragmentBase {
+public class AllCollectionsFragment extends BaseFragment {
     private SectionsPagerAdapter mSectionsPagerAdapter;
     private ViewPager mViewPager;
 

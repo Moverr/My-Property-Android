@@ -7,13 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import myproperty.codemovers.myproperty.R;
-import myproperty.codemovers.myproperty.core.FragmentBase;
+import myproperty.codemovers.myproperty.core.BaseFragment;
 
 /**
  * Created by Manny on 8/29/2017.
  */
 
-public class SignupFragment  extends FragmentBase {
+public class SignupFragment  extends BaseFragment {
 
     private static SignupFragment instance = null;
 
