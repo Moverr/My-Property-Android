@@ -13,7 +13,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 
 import android.support.v7.widget.Toolbar;
-import android.text.Layout;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,7 +22,7 @@ import android.view.View;
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.authentication.LoginFragment;
 import myproperty.codemovers.myproperty.authentication.SignupFragment;
-import myproperty.codemovers.myproperty.commons.ActivityBase;
+import myproperty.codemovers.myproperty.core.ActivityBase;
 
 
 /**

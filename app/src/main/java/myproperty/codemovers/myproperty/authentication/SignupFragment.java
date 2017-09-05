@@ -7,7 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import myproperty.codemovers.myproperty.R;
-import myproperty.codemovers.myproperty.commons.FragmentBase;
+import myproperty.codemovers.myproperty.core.FragmentBase;
 
 /**
  * Created by Manny on 8/29/2017.

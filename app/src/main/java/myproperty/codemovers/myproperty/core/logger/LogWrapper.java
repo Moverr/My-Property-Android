@@ -1,6 +1,4 @@
-package myproperty.codemovers.myproperty.commons.logger;
-
-import android.util.*;
+package myproperty.codemovers.myproperty.core.logger;
 
 /**
  * Created by Manny on 8/26/2017.

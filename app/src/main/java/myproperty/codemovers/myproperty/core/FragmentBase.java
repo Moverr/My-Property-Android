@@ -1,4 +1,4 @@
-package myproperty.codemovers.myproperty.commons;
+package myproperty.codemovers.myproperty.core;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
