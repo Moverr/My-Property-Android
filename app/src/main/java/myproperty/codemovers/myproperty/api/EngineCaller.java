@@ -24,7 +24,7 @@ import java.util.Map;
  * Created by mover on 8/31/2017.
  */
 
-public class EngineCaller {
+public class EngineCaller  extends  EngineCallerAbstract {
 
 
     private static String url;
