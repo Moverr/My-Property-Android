@@ -20,11 +20,13 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
+import myproperty.codemovers.myproperty.core.abstracts.EngineCallerAbstract;
+
 /**
  * Created by mover on 8/31/2017.
  */
 
-public class EngineCaller  extends  EngineCallerAbstract {
+public class EngineCaller  extends EngineCallerAbstract {
 
 
     private static String url;
@@ -35,6 +37,8 @@ public class EngineCaller  extends  EngineCallerAbstract {
     // Instantiate the RequestQueue with the cache and network.
     RequestQueue mRequestQueue ;
 
+    String successResponse;
+
     private static EngineCaller instance;
 
     private static EngineCaller getInstance(Context context){
@@ -43,6 +47,8 @@ public class EngineCaller  extends  EngineCallerAbstract {
             instance = new EngineCaller(context);
         }
         return  instance;
+    }
+    public EngineCaller(){
     }
 
 
@@ -81,13 +87,18 @@ public class EngineCaller  extends  EngineCallerAbstract {
         return url;
     }
 
+
     //TODO: do Post
-    public static void doPost(final Context context, String url, final Map headers, final JSONObject body){
+    public   String  doPost(final Context context, String url, final Map headers, final JSONObject body){
+
+        String response = null;
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 Toast.makeText(context, "  Success", Toast.LENGTH_SHORT).show();
+                response =        SuccessResponse(response);
+
             }
         }, new Response.ErrorListener() {
             @Override
@@ -121,7 +132,17 @@ public class EngineCaller  extends  EngineCallerAbstract {
             }
         };
         queue.add(stringRequest);
+        return response;
     }
+
+
+
+    @Override
+    public String SuccessResponse(String Response) {
+         return  Response;
+    }
+
+
 
     //TODO: do Get
     public static void doGet(Context context, String url, final Map headers){

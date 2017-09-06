@@ -13,12 +13,13 @@ import android.widget.Toast;
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.core.BaseFragment;
 import myproperty.codemovers.myproperty.connector.AuthenticationConnector;
+import myproperty.codemovers.myproperty.core.abstracts.EngineCallerAbstract;
 
 /**
  * Created by Manny on 8/29/2017.
  */
 
-public class LoginFragment extends BaseFragment {
+public class LoginFragment extends BaseFragment  {
 
     private static LoginFragment instance = null;
 
@@ -73,7 +74,6 @@ public class LoginFragment extends BaseFragment {
         });
 
 
-
         return view;
 
     }
@@ -92,6 +92,9 @@ public class LoginFragment extends BaseFragment {
         }
 
     }
+
+
+
 
 
 
