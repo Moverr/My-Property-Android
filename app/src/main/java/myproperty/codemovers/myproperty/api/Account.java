@@ -13,8 +13,5 @@ public class Account  extends VolleyService {
          //   doPost(context,Password,Username);
     }
 
-    @Override
-    public String SuccessResponse(String Response) {
-        return Response;
-    }
+
 }

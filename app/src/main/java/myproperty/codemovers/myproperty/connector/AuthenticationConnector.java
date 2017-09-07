@@ -58,7 +58,7 @@ public class AuthenticationConnector extends  ConnectorBase   {
 
             //TODO: Missing functionality is adding a callback, and failer response
 
-            caller = new VolleyService(context);
+         //   caller = new VolleyService(context);
           return   caller.doPost(context,url,HEADERS,BODY);
 
 

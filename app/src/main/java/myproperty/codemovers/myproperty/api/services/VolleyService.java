@@ -31,6 +31,7 @@ public class VolleyService {
 
     private static String url;
     Cache cache ;
+    Network network ;
     RequestQueue mRequestQueue ;
     String successResponse;
     private static VolleyService instance;
@@ -92,6 +93,7 @@ public class VolleyService {
             @Override
             public void onResponse(JSONObject response) {
                 Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
+                mResultCallback.notifySuccess("mover",response);
             }
         }, new Response.ErrorListener() {
             @Override
