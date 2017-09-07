@@ -1,4 +1,4 @@
-package myproperty.codemovers.myproperty.api;
+package myproperty.codemovers.myproperty.api.services;
 
 /**
  * Created by Manny on 9/5/2017.

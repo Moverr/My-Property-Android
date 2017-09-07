@@ -8,7 +8,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
-import myproperty.codemovers.myproperty.api.EngineCaller;
+import myproperty.codemovers.myproperty.api.services.VolleyService;
 
 /**
  * Created by Manny on 9/2/2017.
@@ -20,7 +20,7 @@ public class AuthenticationConnector extends  ConnectorBase   {
     String   accountLoginEndpoint  = "account/login";
 
 
-    EngineCaller caller ;
+    VolleyService caller ;
 
     public static AuthenticationConnector getInstance(){
         if(instance == null){
@@ -38,7 +38,7 @@ public class AuthenticationConnector extends  ConnectorBase   {
     JSONObject BODY = new JSONObject();
 
     //TODO: Submit Data
-    public boolean submitData(Context context,String username, String password) throws  Exception{
+    public String submitData(Context context,String username, String password) throws  Exception{
 
         if(!username.isEmpty() && !password.isEmpty()){
             //Todo: send message to the server
@@ -58,16 +58,14 @@ public class AuthenticationConnector extends  ConnectorBase   {
 
             //TODO: Missing functionality is adding a callback, and failer response
 
-            caller = new EngineCaller(context);
-            caller.doPost(context,url,HEADERS,BODY);
+            caller = new VolleyService(context);
+          return   caller.doPost(context,url,HEADERS,BODY);
 
 
 
-
-            return true;
         }else
             Toast.makeText(context, "Fill in Blanks", Toast.LENGTH_SHORT).show();
-        return  true;
+       return null;
     }
 
 

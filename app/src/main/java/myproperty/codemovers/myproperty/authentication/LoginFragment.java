@@ -88,7 +88,9 @@ public class LoginFragment extends BaseFragment  {
         }else
         {
             Toast.makeText(this.getContext(), "Testing Me Out ", Toast.LENGTH_SHORT).show();
-            authenticationConnector.submitData(getContext(),_username,_password);
+            String response =  authenticationConnector.submitData(getContext(),_username,_password);
+            Toast.makeText(this.getContext(), response, Toast.LENGTH_SHORT).show();
+
         }
 
     }

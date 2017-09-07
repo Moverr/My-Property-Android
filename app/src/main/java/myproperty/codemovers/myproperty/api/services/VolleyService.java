@@ -1,4 +1,4 @@
-package myproperty.codemovers.myproperty.api;
+package myproperty.codemovers.myproperty.api.services;
 
 import android.content.Context;
 import android.widget.Toast;
@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Cache;
 import com.android.volley.Network;
+import com.android.volley.NetworkResponse;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -13,6 +14,7 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.BasicNetwork;
 import com.android.volley.toolbox.DiskBasedCache;
 import com.android.volley.toolbox.HurlStack;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -20,47 +22,39 @@ import org.json.JSONObject;
 
 import java.util.Map;
 
-import myproperty.codemovers.myproperty.core.abstracts.EngineCallerAbstract;
-
 /**
  * Created by mover on 8/31/2017.
  */
 
-public class EngineCaller  extends EngineCallerAbstract {
+public class VolleyService {
 
 
     private static String url;
-    // Instantiate the cache
     Cache cache ;
-    // Set up the network to use HttpURLConnection as the HTTP client.
-    Network network ;
-    // Instantiate the RequestQueue with the cache and network.
     RequestQueue mRequestQueue ;
-
     String successResponse;
+    private static VolleyService instance;
 
-    private static EngineCaller instance;
+    Context mContext;
+    IResult mResultCallback = null;
 
-    private static EngineCaller getInstance(Context context){
+    public VolleyService(Context mContext, IResult mResultCallback) {
+        this.mContext = mContext;
+        this.mResultCallback = mResultCallback;
+        cache = new DiskBasedCache(mContext.getCacheDir(),1024*1924);
+      //  network = new BasicNetwork(new HurlStack());
+    }
+
+    private static VolleyService getInstance(Context context,IResult mResultCallback){
         if(instance == null)
         {
-            instance = new EngineCaller(context);
+            instance = new VolleyService(context, mResultCallback);
         }
         return  instance;
     }
-    public EngineCaller(){
-    }
 
 
-    public EngineCaller(Context context) {
-        try{
-            cache = new DiskBasedCache(context.getCacheDir(),1024*1924);
-             network = new BasicNetwork(new HurlStack());
-        }catch (Exception em){
-            Toast.makeText(context, em.getMessage(), Toast.LENGTH_SHORT).show();
-
-        }
-
+    public VolleyService(){
     }
 
     public RequestQueue getmRequestQueue() {
@@ -93,32 +87,37 @@ public class EngineCaller  extends EngineCallerAbstract {
 
         String response = null;
         RequestQueue queue = Volley.newRequestQueue(context);
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                Toast.makeText(context, "  Success", Toast.LENGTH_SHORT).show();
-                response =        SuccessResponse(response);
 
+        JsonObjectRequest jsonobj = new JsonObjectRequest(url, body, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show();
-                Toast.makeText(context, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Error ", Toast.LENGTH_SHORT).show();
             }
-        }){
+        })
 
-            @Override
-            public byte[] getBody() throws AuthFailureError {
+//        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, new Response.Listener<JSONObject>() {
+////            @Override
+////            public void onResponse(J response) {
+////                Toast.makeText(context, "  Success", Toast.LENGTH_SHORT).show();
+////                mResultCallback.notifySuccess("",response);
+////
+////            }
+//
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        })
 
-                try {
-                    String mRequestBody = body.toString();
-                    return mRequestBody.toString().getBytes("utf-8");
-                }
-                catch (Exception e){
-                    return null;
-                }
-            }
+        {
+
 
             @Override
             public String getBodyContentType() {
@@ -131,16 +130,11 @@ public class EngineCaller  extends EngineCallerAbstract {
                 return  headers;
             }
         };
-        queue.add(stringRequest);
+        queue.add(jsonobj);
         return response;
     }
 
 
-
-    @Override
-    public String SuccessResponse(String Response) {
-         return  Response;
-    }
 
 
 
