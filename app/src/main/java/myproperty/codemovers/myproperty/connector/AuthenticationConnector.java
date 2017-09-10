@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.util.HashMap;
 import java.util.Map;
 
+import myproperty.codemovers.myproperty.api.services.IResult;
 import myproperty.codemovers.myproperty.api.services.VolleyService;
 
 /**
@@ -38,7 +39,7 @@ public class AuthenticationConnector extends  ConnectorBase   {
     JSONObject BODY = new JSONObject();
 
     //TODO: Submit Data
-    public String submitData(Context context,String username, String password) throws  Exception{
+    public String submitData(Context context, String username, String password, IResult mResultCallback) throws  Exception{
 
         if(!username.isEmpty() && !password.isEmpty()){
             //Todo: send message to the server
@@ -57,8 +58,8 @@ public class AuthenticationConnector extends  ConnectorBase   {
 
 
             //TODO: Missing functionality is adding a callback, and failer response
-
-         //   caller = new VolleyService(context);
+            caller = new VolleyService(context,mResultCallback);
+           // caller = new VolleyService();
           return   caller.doPost(context,url,HEADERS,BODY);
 
 

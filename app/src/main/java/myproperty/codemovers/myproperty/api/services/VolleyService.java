@@ -86,43 +86,41 @@ public class VolleyService {
     //TODO: do Post
     public   String  doPost(final Context context, String url, final Map headers, final JSONObject body){
 
+        Toast.makeText(context, "MAILO", Toast.LENGTH_SHORT).show();
         String response = null;
         RequestQueue queue = Volley.newRequestQueue(context);
-
-        JsonObjectRequest jsonobj = new JsonObjectRequest(url, body, new Response.Listener<JSONObject>() {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
-            public void onResponse(JSONObject response) {
-                Toast.makeText(context, "Success", Toast.LENGTH_SHORT).show();
-                mResultCallback.notifySuccess("mover",response);
+            public void onResponse(String response) {
+                Toast.makeText(context, "  Success", Toast.LENGTH_SHORT).show();
+                mResultCallback.notifySuccess("success",response);
+                //response =        SuccessResponse(response);
+
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Error ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
+                mResultCallback.notifyError("ERROR",error);
             }
-        })
+        }){
 
-//        JsonObjectRequest stringRequest = new JsonObjectRequest(Request.Method.POST, url, new Response.Listener<JSONObject>() {
-////            @Override
-////            public void onResponse(J response) {
-////                Toast.makeText(context, "  Success", Toast.LENGTH_SHORT).show();
-////                mResultCallback.notifySuccess("",response);
-////
-////            }
-//
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show();
-//                Toast.makeText(context, error.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        })
+            @Override
+            public byte[] getBody() throws AuthFailureError {
 
-        {
-
+                try {
+                    String mRequestBody = body.toString();
+                    return mRequestBody.toString().getBytes("utf-8");
+                }
+                catch (Exception e){
+                    return null;
+                }
+            }
 
             @Override
             public String getBodyContentType() {
+               // return "application/x-www-form-urlencoded";
                 return "application/json;";
             }
 
@@ -132,7 +130,7 @@ public class VolleyService {
                 return  headers;
             }
         };
-        queue.add(jsonobj);
+        queue.add(stringRequest);
         return response;
     }
 

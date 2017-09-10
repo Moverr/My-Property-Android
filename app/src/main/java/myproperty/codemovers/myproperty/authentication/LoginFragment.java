@@ -100,13 +100,14 @@ public class LoginFragment extends BaseFragment  {
     private void initVoleyCallback() {
         mResultCallback = new IResult() {
             @Override
-            public void notifySuccess(String requestType, JSONObject response) {
+            public void notifySuccess(String requestType, String response) {
                 Toast.makeText(getContext(), "Hello Rogers Successful", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void notifyError(String requestType, VolleyError error) {
-                Toast.makeText(getContext(), "Hello Rogers Error", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), "Hello Rogers "+error, Toast.LENGTH_SHORT).show();
             }
         };
     }
@@ -120,6 +121,11 @@ public class LoginFragment extends BaseFragment  {
         if(_username.isEmpty() || _password.isEmpty()  ){
 
             Toast.makeText(this.getContext(), "Fill Blanks ", Toast.LENGTH_LONG).show();
+
+
+        }else
+        {
+            Toast.makeText(this.getContext(), "Testing Me Out ", Toast.LENGTH_SHORT).show();
             String url = caller.getUrl(accountLoginEndpoint);
 
             // Add Headers
@@ -133,21 +139,17 @@ public class LoginFragment extends BaseFragment  {
             BODY.put("username",username);
             BODY.put("password",password);
 
-            //   caller = new VolleyService(context);
-               caller.doPost(getContext(),url,HEADERS,BODY);
+              // caller = new VolleyService(getContext(),mResultCallback);
+            //caller.doPost(getContext(),url,HEADERS,BODY);
 
-        }else
-        {
-            Toast.makeText(this.getContext(), "Testing Me Out ", Toast.LENGTH_SHORT).show();
-            String response =  authenticationConnector.submitData(getContext(),_username,_password);
-
-
-            Toast.makeText(this.getContext(), response, Toast.LENGTH_SHORT).show();
+            String response =  authenticationConnector.submitData(getContext(),_username,_password,mResultCallback);
+            //caller = new VolleyService();
+           //caller.doPost(getContext(),url,HEADERS,BODY);
+           // Toast.makeText(this.getContext(), response, Toast.LENGTH_SHORT).show();
 
         }
 
     }
-
 
 
 }
