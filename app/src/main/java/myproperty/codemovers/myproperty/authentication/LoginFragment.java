@@ -10,6 +10,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 
 import org.json.JSONObject;
@@ -108,6 +114,25 @@ public class LoginFragment extends BaseFragment  {
             @Override
             public void notifyError(String requestType, VolleyError error) {
                 Toast.makeText(getContext(), "Hello Rogers "+error, Toast.LENGTH_SHORT).show();
+
+                if(error instanceof  NoConnectionError){
+                    Toast.makeText(getContext(),   getContext().getString(R.string.no_network) , Toast.LENGTH_LONG).show();
+                }
+                else if (error instanceof TimeoutError) {
+                    Toast.makeText(getContext(),   getContext().getString(R.string.connection_timeout) , Toast.LENGTH_LONG).show();
+                } else if (error instanceof AuthFailureError) {
+                    Toast.makeText(getContext(),  "User name and or Password is Invalid " , Toast.LENGTH_LONG).show();
+
+                } else if (error instanceof ServerError) {
+                    Toast.makeText(getContext(),   getContext().getString(R.string.server_error) , Toast.LENGTH_LONG).show();
+
+                } else if (error instanceof NetworkError) {
+                    Toast.makeText(getContext(),   getContext().getString(R.string.network_error) , Toast.LENGTH_LONG).show();
+
+                } else if (error instanceof ParseError) {
+                    Toast.makeText(getContext(),   getContext().getString(R.string.parse_error) , Toast.LENGTH_LONG).show();
+
+                }
             }
         };
     }

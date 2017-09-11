@@ -9,4 +9,10 @@
     <string name="title_activity_splash">My Property</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="no_network"> NO NETWORK </string>
+    <string name="connection_timeout"> CONNECTION TIMEOUT </string>
+    <string name="server_error"> Something went wrong , contact system administrator </string>
+    <string name="network_error"> Network Error </string>
+    <string name="parse_error"> Parse Error </string>
+
 </resources>

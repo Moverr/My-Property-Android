@@ -85,8 +85,6 @@ public class VolleyService {
 
     //TODO: do Post
     public   String  doPost(final Context context, String url, final Map headers, final JSONObject body){
-
-        Toast.makeText(context, "MAILO", Toast.LENGTH_SHORT).show();
         String response = null;
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
@@ -94,14 +92,10 @@ public class VolleyService {
             public void onResponse(String response) {
                 Toast.makeText(context, "  Success", Toast.LENGTH_SHORT).show();
                 mResultCallback.notifySuccess("success",response);
-                //response =        SuccessResponse(response);
-
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "Something Went Wrong", Toast.LENGTH_SHORT).show();
-                Toast.makeText(context, error.getMessage(), Toast.LENGTH_SHORT).show();
                 mResultCallback.notifyError("ERROR",error);
             }
         }){
@@ -120,7 +114,6 @@ public class VolleyService {
 
             @Override
             public String getBodyContentType() {
-               // return "application/x-www-form-urlencoded";
                 return "application/json;";
             }
 
