@@ -18,8 +18,10 @@ import com.android.volley.ServerError;
 import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,6 +31,8 @@ import myproperty.codemovers.myproperty.api.services.VolleyService;
 import myproperty.codemovers.myproperty.core.BaseFragment;
 import myproperty.codemovers.myproperty.connector.AuthenticationConnector;
 import myproperty.codemovers.myproperty.core.abstracts.EngineCallerAbstract;
+import myproperty.codemovers.myproperty.dao.AuthenticationDAO;
+import myproperty.codemovers.myproperty.dao.PermissionResponse;
 
 /**
  * Created by Manny on 8/29/2017.
@@ -102,13 +106,40 @@ public class LoginFragment extends BaseFragment  {
         return view;
 
     }
-
+AuthenticationDAO authenticationDAO;
     private void initVoleyCallback() {
         mResultCallback = new IResult() {
             @Override
             public void notifySuccess(String requestType, String response) {
-                Toast.makeText(getContext(), "Hello Rogers Successful", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                try {
+                    authenticationDAO = new AuthenticationDAO();
+                    Toast.makeText(getContext(), "Hello Rogers Successful", Toast.LENGTH_SHORT).show();
+                    JSONObject jsonObject = new JSONObject(response);
+                    authenticationDAO.setAuthorization(jsonObject.getString("authorization"));
+                    JSONArray permissions = jsonObject.getJSONArray("permissions");
+
+                    ArrayList<PermissionResponse> permissionResponses = new ArrayList<>();
+
+                    int x = 0;
+                    while(x < permissions.length()){
+                        JSONObject permission = permissions.getJSONObject(x);
+                        PermissionResponse permissionResponse = new PermissionResponse();
+                        permissionResponse.setCode(permission.getString("code"));
+                        permissionResponse.setGrouping(permission.getString("status"));
+                        permissionResponse.setName(permission.getString("name"));
+                        permissionResponse.setId(permission.getInt("code"));
+
+                        // Adding Permission Response :;
+                        permissionResponses.add(permissionResponse);
+
+                        x ++;
+                    }
+
+
+                    Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
+                }catch (Exception em){
+                    Toast.makeText(getContext(), "Something is Wrong with Data Conversion", Toast.LENGTH_SHORT).show();
+                }
             }
 
             @Override

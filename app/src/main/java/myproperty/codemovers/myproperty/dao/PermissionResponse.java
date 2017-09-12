@@ -4,7 +4,7 @@ package myproperty.codemovers.myproperty.dao;
  * Created by Manny on 9/11/2017.
  */
 
-class PermissionResponse {
+public class PermissionResponse {
     private Integer id;
     private String grouping;
     private String code;
