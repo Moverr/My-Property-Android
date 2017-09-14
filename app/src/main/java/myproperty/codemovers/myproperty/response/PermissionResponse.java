@@ -1,4 +1,4 @@
-package myproperty.codemovers.myproperty.dao;
+package myproperty.codemovers.myproperty.response;
 
 /**
  * Created by Manny on 9/11/2017.

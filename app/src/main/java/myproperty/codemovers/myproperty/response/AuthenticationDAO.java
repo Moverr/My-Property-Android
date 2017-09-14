@@ -1,4 +1,4 @@
-package myproperty.codemovers.myproperty.dao;
+package myproperty.codemovers.myproperty.response;
 
 import java.util.List;
 

@@ -30,9 +30,8 @@ import myproperty.codemovers.myproperty.api.services.IResult;
 import myproperty.codemovers.myproperty.api.services.VolleyService;
 import myproperty.codemovers.myproperty.core.BaseFragment;
 import myproperty.codemovers.myproperty.connector.AuthenticationConnector;
-import myproperty.codemovers.myproperty.core.abstracts.EngineCallerAbstract;
-import myproperty.codemovers.myproperty.dao.AuthenticationDAO;
-import myproperty.codemovers.myproperty.dao.PermissionResponse;
+import myproperty.codemovers.myproperty.response.AuthenticationDAO;
+import myproperty.codemovers.myproperty.response.PermissionResponse;
 
 /**
  * Created by Manny on 8/29/2017.
@@ -80,6 +79,7 @@ public class LoginFragment extends BaseFragment  {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.login_screen,container,false);
 
+
         signupFragment = new SignupFragment();
 
         login_button = (Button) view.findViewById(R.id.login_button);
@@ -113,7 +113,7 @@ AuthenticationDAO authenticationDAO;
             public void notifySuccess(String requestType, String response) {
                 try {
                     authenticationDAO = new AuthenticationDAO();
-                    Toast.makeText(getContext(), "Hello Rogers Successful", Toast.LENGTH_SHORT).show();
+
                     JSONObject jsonObject = new JSONObject(response);
                     authenticationDAO.setAuthorization(jsonObject.getString("authorization"));
                     JSONArray permissions = jsonObject.getJSONArray("permissions");
@@ -127,16 +127,13 @@ AuthenticationDAO authenticationDAO;
                         permissionResponse.setCode(permission.getString("code"));
                         permissionResponse.setGrouping(permission.getString("status"));
                         permissionResponse.setName(permission.getString("name"));
-                        permissionResponse.setId(permission.getInt("code"));
-
                         // Adding Permission Response :;
                         permissionResponses.add(permissionResponse);
-
                         x ++;
                     }
 
+                    Toast.makeText(getContext(), "YOU HAVE SUCCESSFULLY LOGGED IN ", Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(getContext(), response, Toast.LENGTH_SHORT).show();
                 }catch (Exception em){
                     Toast.makeText(getContext(), "Something is Wrong with Data Conversion", Toast.LENGTH_SHORT).show();
                 }
