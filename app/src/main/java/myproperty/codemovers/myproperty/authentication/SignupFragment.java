@@ -12,6 +12,8 @@ import android.widget.Toast;
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.core.BaseFragment;
 
+import myproperty.codemovers.myproperty.entitity._account;
+
 /**
  * Created by Manny on 8/29/2017.
  */
@@ -20,7 +22,10 @@ public class SignupFragment  extends BaseFragment {
 
     private static SignupFragment instance = null;
 
+
     EditText names,email_address,password,repassword;
+
+
 
     Button register;
 
@@ -60,7 +65,21 @@ public class SignupFragment  extends BaseFragment {
     }
 
     // plates are done
+    private String NAMES;
+    private String EMAIL_ADDRESS;
+    private String PASSWORD;
+    private String RE_PASSWORD;
+
     private void handleRegister() {
         Toast.makeText(getContext(), "Handler Registration ", Toast.LENGTH_SHORT).show();
+
+        NAMES = names.getText().toString();
+        EMAIL_ADDRESS = email_address.getText().toString();
+        PASSWORD = password.getText().toString();
+        RE_PASSWORD = repassword.getText().toString();
+
+        _account account = new _account();
+
+
     }
 }
