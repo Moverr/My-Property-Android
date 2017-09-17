@@ -1,9 +1,11 @@
 package myproperty.codemovers.myproperty.dashboard.customer;
 
 import android.os.Bundle;
+import android.support.v4.app.ListFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -11,6 +13,7 @@ import java.util.ArrayList;
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.core.BaseFragment;
 import myproperty.codemovers.myproperty.dashboard.PlaceholderFragment;
+
 
 /**
  * Created by mover on 9/17/2017.
@@ -59,6 +62,8 @@ public class RentFragment  extends BaseFragment {
         for(int x = 0; x < values.length; x ++ ){
             list.add(values[x]);
         }
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.list_item_view,list);
+
 
 
 
@@ -66,4 +71,7 @@ public class RentFragment  extends BaseFragment {
 
         return rootView;
     }
+
+
+
 }
