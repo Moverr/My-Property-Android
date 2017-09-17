@@ -135,7 +135,7 @@ public class DashboardActivity  extends BaseActivity {
     private void  manageMenu(NavigationView navigationView){
          Menu menu = navigationView.getMenu();
          menu.findItem(R.id.nav_gallery).setVisible(false);
-        menu.findItem(R.id.home).setVisible(false);
+         menu.findItem(R.id.home).setVisible(false);
 
 
     }
