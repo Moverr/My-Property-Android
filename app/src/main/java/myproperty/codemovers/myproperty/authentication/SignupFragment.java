@@ -14,6 +14,7 @@ import myproperty.codemovers.myproperty.core.BaseFragment;
 
 import myproperty.codemovers.myproperty.entitity._account;
 
+
 /**
  * Created by Manny on 8/29/2017.
  */
@@ -78,7 +79,30 @@ public class SignupFragment  extends BaseFragment {
         PASSWORD = password.getText().toString();
         RE_PASSWORD = repassword.getText().toString();
 
-        _account account = new _account();
+        //todo: check to see that there is not empty
+
+
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if(NAMES.length() <= 0 ||  EMAIL_ADDRESS.length() <= 0 || PASSWORD.length() <= 0 || RE_PASSWORD.length() <= 0 ){
+            Toast.makeText(getContext(), "Fill Blanks", Toast.LENGTH_SHORT).show();
+        }
+        else if (!EMAIL_ADDRESS.matches(emailPattern) ){
+            Toast.makeText(getContext(), "Invalid Email Address ", Toast.LENGTH_SHORT).show();
+        }
+        else{
+
+            Toast.makeText(getContext(), " Testing the Send of ", Toast.LENGTH_SHORT).show();
+            _account account = new _account();
+            account.setEmail_address(EMAIL_ADDRESS);
+            account.setNames(NAMES);
+            account.setPassword(PASSWORD);
+
+
+        }
+
+
+
 
 
     }

@@ -195,7 +195,7 @@ AuthenticationDAO authenticationDAO;
               // caller = new VolleyService(getContext(),mResultCallback);
             //caller.doPost(getContext(),url,HEADERS,BODY);
 
-            String response =  authenticationConnector.submitData(getContext(),_username,_password,mResultCallback);
+            String response =  authenticationConnector.SubmitLoginData(getContext(),_username,_password,mResultCallback);
             //caller = new VolleyService();
            //caller.doPost(getContext(),url,HEADERS,BODY);
            // Toast.makeText(this.getContext(), response, Toast.LENGTH_SHORT).show();

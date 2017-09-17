@@ -10,6 +10,8 @@ import java.util.Map;
 
 import myproperty.codemovers.myproperty.api.services.IResult;
 import myproperty.codemovers.myproperty.api.services.VolleyService;
+import myproperty.codemovers.myproperty.entitity._account;
+
 
 /**
  * Created by Manny on 9/2/2017.
@@ -38,8 +40,8 @@ public class AuthenticationConnector extends  ConnectorBase   {
     Map PARAMS = new HashMap();
     JSONObject BODY = new JSONObject();
 
-    //TODO: Submit Data
-    public String submitData(Context context, String username, String password, IResult mResultCallback) throws  Exception{
+    //TODO: Submit Login  Data
+    public String submitLogin(Context context, String username, String password, IResult mResultCallback) throws  Exception{
 
         if(!username.isEmpty() && !password.isEmpty()){
             //Todo: send message to the server
@@ -68,6 +70,36 @@ public class AuthenticationConnector extends  ConnectorBase   {
             Toast.makeText(context, "Fill in Blanks", Toast.LENGTH_SHORT).show();
        return null;
     }
+
+
+
+    //todo: Submit Registration Data
+    public String submitRegistration(Context context, _account account, IResult mResultCallback) throws  Exception{
+
+        // Add Headers
+         HEADERS.put("Content-Type", "application/json");
+
+        // Add Parameters
+        BODY.put("names", account.getNames());
+        BODY.put("password", account.getPassword());
+        BODY.put("email_address", account.getEmail_address());
+
+
+
+            //TODO: Missing functionality is adding a callback, and failer response
+            caller = new VolleyService(context,mResultCallback);
+            // caller = new VolleyService();
+            return   caller.doPost(context,url,HEADERS,BODY);
+
+
+
+//        }else
+//            Toast.makeText(context, "Fill in Blanks", Toast.LENGTH_SHORT).show();
+//        return null;
+
+        return null;
+    }
+
 
 
     @Override
