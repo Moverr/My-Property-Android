@@ -12,7 +12,7 @@ import myproperty.codemovers.myproperty.R;
  * Created by mover on 9/17/2017.
  */
 
-public static class PlaceholderFragment extends Fragment {
+public   class PlaceholderFragment extends Fragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
