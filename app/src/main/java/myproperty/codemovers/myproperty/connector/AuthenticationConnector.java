@@ -21,6 +21,7 @@ public class AuthenticationConnector extends  ConnectorBase   {
     private static AuthenticationConnector instance;
 
     String   accountLoginEndpoint  = "account/login";
+    String   accountCreateEndpoint  = "account/create";
 
 
     VolleyService caller ;
@@ -60,7 +61,8 @@ public class AuthenticationConnector extends  ConnectorBase   {
 
 
             //TODO: Missing functionality is adding a callback, and failer response
-            caller = new VolleyService(context,mResultCallback);
+           // caller = new VolleyService(context,mResultCallback);
+            caller = VolleyService.getInstance(context,mResultCallback);
            // caller = new VolleyService();
           return   caller.doPost(context,url,HEADERS,BODY);
 
@@ -74,28 +76,35 @@ public class AuthenticationConnector extends  ConnectorBase   {
 
 
     //todo: Submit Registration Data
-    public String submitRegistration(Context context, _account account, IResult mResultCallback) throws  Exception{
+    public String submitRegistration(Context context, _account account, IResult mResultCallback) {
 
-        // Add Headers
-         HEADERS.put("Content-Type", "application/json");
+        try {
+//            String url = caller.getUrl(accountCreateEndpoint);
+//
+//            Toast.makeText(context, " TRUST ME", Toast.LENGTH_SHORT).show();
+//            // Add Headers
+//            HEADERS.put("Content-Type", "application/json");
+//
+//            // Add Parameters
+//            BODY.put("names", account.getNames());
+//            BODY.put("password", account.getPassword());
+//            BODY.put("email_address", account.getEmail_address());
+//
+//
+//            //TODO: Missing functionality is adding a callback, and failer response
+//            caller = VolleyService.getInstance(context, mResultCallback);
+//
+//            //   new VolleyService(context,mResultCallback);
+//            // caller = new VolleyService();
+//            // caller = new VolleyService();
+//            Toast.makeText(context, " TRUST ME 2", Toast.LENGTH_SHORT).show();
+//            return caller.doPost(context, url, HEADERS, BODY);
 
-        // Add Parameters
-        BODY.put("names", account.getNames());
-        BODY.put("password", account.getPassword());
-        BODY.put("email_address", account.getEmail_address());
-
-
-
-            //TODO: Missing functionality is adding a callback, and failer response
-            caller = new VolleyService(context,mResultCallback);
-            // caller = new VolleyService();
-            return   caller.doPost(context,url,HEADERS,BODY);
-
-
-
-//        }else
-//            Toast.makeText(context, "Fill in Blanks", Toast.LENGTH_SHORT).show();
-//        return null;
+            Toast.makeText(context, "Hello Maximan ", Toast.LENGTH_SHORT).show();
+        }
+        catch (Exception e){
+            Toast.makeText(context, "ERROR SOME THING ", Toast.LENGTH_SHORT).show();
+        }
 
         return null;
     }

@@ -9,10 +9,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
+
 import myproperty.codemovers.myproperty.R;
+import myproperty.codemovers.myproperty.api.services.IResult;
+import myproperty.codemovers.myproperty.connector.AuthenticationConnector;
 import myproperty.codemovers.myproperty.core.BaseFragment;
 
+import myproperty.codemovers.myproperty.core.util.Utilities;
 import myproperty.codemovers.myproperty.entitity._account;
+import myproperty.codemovers.myproperty.core.util.Utilities.*;
 
 
 /**
@@ -25,10 +31,10 @@ public class SignupFragment  extends BaseFragment {
 
 
     EditText names,email_address,password,repassword;
-
-
-
     Button register;
+
+    IResult mResultCallback  = null;
+    AuthenticationConnector authenticationConnector;
 
     public static SignupFragment getInstance(){
         if(instance == null){
@@ -53,6 +59,8 @@ public class SignupFragment  extends BaseFragment {
         password = (EditText) view.findViewById(R.id.password);
         repassword = (EditText) view.findViewById(R.id.repassword);
         register = (Button) view.findViewById(R.id.register);
+
+        initVoleyCallback();
 
         register.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,23 +95,40 @@ public class SignupFragment  extends BaseFragment {
         if(NAMES.length() <= 0 ||  EMAIL_ADDRESS.length() <= 0 || PASSWORD.length() <= 0 || RE_PASSWORD.length() <= 0 ){
             Toast.makeText(getContext(), "Fill Blanks", Toast.LENGTH_SHORT).show();
         }
-        else if (!EMAIL_ADDRESS.matches(emailPattern) ){
+        else if (!Utilities.CheckEmailCheckEmail(emailPattern) ){
             Toast.makeText(getContext(), "Invalid Email Address ", Toast.LENGTH_SHORT).show();
         }
         else{
+            try {
 
-            Toast.makeText(getContext(), " Testing the Send of ", Toast.LENGTH_SHORT).show();
-            _account account = new _account();
-            account.setEmail_address(EMAIL_ADDRESS);
-            account.setNames(NAMES);
-            account.setPassword(PASSWORD);
 
+                _account account = new _account();
+               // account.setEmail_address(EMAIL_ADDRESS);
+                //account.setNames(NAMES);
+                //account.setPassword(PASSWORD);
+
+                Toast.makeText(getContext(), " Testing the Send of ", Toast.LENGTH_SHORT).show();
+                //  authenticationConnector.submitRegistration(getContext(),account,mResultCallback);
+            } catch (Exception e) {
+                e.printStackTrace();
+                Toast.makeText(getContext(), e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
+            }
 
         }
 
+    }
 
+    private void initVoleyCallback() {
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, String response) {
+                Toast.makeText(getContext(), "Success Response on Wall ", Toast.LENGTH_SHORT).show();
+            }
 
-
-
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Toast.makeText(getContext(), "An Error Was Encountered ", Toast.LENGTH_SHORT).show();
+            }
+        };
     }
 }

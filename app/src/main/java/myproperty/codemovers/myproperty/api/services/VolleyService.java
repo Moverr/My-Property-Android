@@ -46,7 +46,7 @@ public class VolleyService {
       //  network = new BasicNetwork(new HurlStack());
     }
 
-    private static VolleyService getInstance(Context context,IResult mResultCallback){
+    public  static VolleyService getInstance(Context context,IResult mResultCallback){
         if(instance == null)
         {
             instance = new VolleyService(context, mResultCallback);
@@ -85,6 +85,7 @@ public class VolleyService {
 
     //TODO: do Post
     public   String  doPost(final Context context, String url, final Map headers, final JSONObject body){
+        Toast.makeText(context, "  MARAGA ", Toast.LENGTH_SHORT).show();
         String response = null;
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {

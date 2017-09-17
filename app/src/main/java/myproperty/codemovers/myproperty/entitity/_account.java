@@ -16,11 +16,7 @@ public class _account {
 
     }
 
-    public _account(String names, String password, String email_address) {
-        this.names = names;
-        this.password = password;
-        this.email_address = email_address;
-    }
+
 
     public String getNames() {
         return names;
@@ -67,13 +63,5 @@ public class _account {
         return result;
     }
 
-    @Override
-    public String toString() {
-        return  this.getClass().getCanonicalName()
-                +"_account{" +
-                "names='" + names + '\'' +
-                ", password='" + password + '\'' +
-                ", email_address='" + email_address + '\'' +
-                "}";
-    }
+
 }
