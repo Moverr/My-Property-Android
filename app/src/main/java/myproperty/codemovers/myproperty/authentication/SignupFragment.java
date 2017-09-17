@@ -9,6 +9,12 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.NetworkError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.ParseError;
+import com.android.volley.ServerError;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 
 import myproperty.codemovers.myproperty.R;
@@ -98,15 +104,13 @@ public class SignupFragment  extends BaseFragment {
         }
         else{
             try {
+                    _account account = new _account();
+                    account.setEmail_address(EMAIL_ADDRESS);
+                    account.setNames(NAMES);
+                    account.setPassword(PASSWORD);
 
-
-                _account account = new _account();
-                account.setEmail_address(EMAIL_ADDRESS);
-                account.setNames(NAMES);
-                account.setPassword(PASSWORD);
-
-                Toast.makeText(getContext(), " Testing the Send of ", Toast.LENGTH_SHORT).show();
-                  authenticationConnector.submitRegistration(getContext(),account,mResultCallback);
+                    Toast.makeText(getContext(), " Testing the Send of ", Toast.LENGTH_SHORT).show();
+                   authenticationConnector.submitRegistration(getContext(),account,mResultCallback);
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(getContext(), e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
@@ -117,16 +121,41 @@ public class SignupFragment  extends BaseFragment {
     }
 
     private void initVoleyCallback() {
-        mResultCallback = new IResult() {
-            @Override
-            public void notifySuccess(String requestType, String response) {
-                Toast.makeText(getContext(), "Success Response on Wall ", Toast.LENGTH_SHORT).show();
-            }
+     try {
 
-            @Override
-            public void notifyError(String requestType, VolleyError error) {
-                Toast.makeText(getContext(), "An Error Was Encountered ", Toast.LENGTH_SHORT).show();
-            }
-        };
+         mResultCallback = new IResult() {
+             @Override
+             public void notifySuccess(String requestType, String response) {
+                 Toast.makeText(getContext(), "Success Response on Wall ", Toast.LENGTH_SHORT).show();
+             }
+
+             @Override
+             public void notifyError(String requestType, VolleyError error) {
+                 Toast.makeText(getContext(), "Hello Rogers "+error, Toast.LENGTH_SHORT).show();
+
+                 if(error instanceof NoConnectionError){
+                     Toast.makeText(getContext(),   getContext().getString(R.string.no_network) , Toast.LENGTH_LONG).show();
+                 }
+                 else if (error instanceof TimeoutError) {
+                     Toast.makeText(getContext(),   getContext().getString(R.string.connection_timeout) , Toast.LENGTH_LONG).show();
+                 } else if (error instanceof AuthFailureError) {
+                     Toast.makeText(getContext(),  "User name and or Password is Invalid " , Toast.LENGTH_LONG).show();
+
+                 } else if (error instanceof ServerError) {
+                     Toast.makeText(getContext(),   getContext().getString(R.string.server_error) , Toast.LENGTH_LONG).show();
+
+                 } else if (error instanceof NetworkError) {
+                     Toast.makeText(getContext(),   getContext().getString(R.string.network_error) , Toast.LENGTH_LONG).show();
+
+                 } else if (error instanceof ParseError) {
+                     Toast.makeText(getContext(),   getContext().getString(R.string.parse_error) , Toast.LENGTH_LONG).show();
+
+                 }
+             }
+         };
+     }
+     catch (Exception e){
+         Toast.makeText(getContext(), e.toString(), Toast.LENGTH_SHORT).show();
+     }
     }
 }

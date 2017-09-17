@@ -47,10 +47,10 @@ public class VolleyService {
     }
 
     public  static VolleyService getInstance(Context context,IResult mResultCallback){
-        if(instance == null)
-        {
+//        if(instance == null)
+//        {
             instance = new VolleyService(context, mResultCallback);
-        }
+      //  }
         return  instance;
     }
 

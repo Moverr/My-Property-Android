@@ -91,6 +91,7 @@ public class AuthenticationConnector extends  ConnectorBase   {
             BODY.put("email_address", account.getEmail_address());
 
 
+            System.out.println(account.getEmail_address());
             //TODO: Missing functionality is adding a callback, and failer response
             caller = VolleyService.getInstance(context, mResultCallback);
 
