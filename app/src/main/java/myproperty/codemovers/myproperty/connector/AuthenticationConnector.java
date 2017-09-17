@@ -79,28 +79,28 @@ public class AuthenticationConnector extends  ConnectorBase   {
     public String submitRegistration(Context context, _account account, IResult mResultCallback) {
 
         try {
-//            String url = caller.getUrl(accountCreateEndpoint);
-//
-//            Toast.makeText(context, " TRUST ME", Toast.LENGTH_SHORT).show();
-//            // Add Headers
-//            HEADERS.put("Content-Type", "application/json");
-//
-//            // Add Parameters
-//            BODY.put("names", account.getNames());
-//            BODY.put("password", account.getPassword());
-//            BODY.put("email_address", account.getEmail_address());
-//
-//
-//            //TODO: Missing functionality is adding a callback, and failer response
-//            caller = VolleyService.getInstance(context, mResultCallback);
-//
-//            //   new VolleyService(context,mResultCallback);
-//            // caller = new VolleyService();
-//            // caller = new VolleyService();
-//            Toast.makeText(context, " TRUST ME 2", Toast.LENGTH_SHORT).show();
-//            return caller.doPost(context, url, HEADERS, BODY);
+            String url = caller.getUrl(accountCreateEndpoint);
 
-            Toast.makeText(context, "Hello Maximan ", Toast.LENGTH_SHORT).show();
+            Toast.makeText(context, " TRUST ME", Toast.LENGTH_SHORT).show();
+            // Add Headers
+            HEADERS.put("Content-Type", "application/json");
+
+            // Add Parameters
+            BODY.put("names", account.getNames());
+            BODY.put("password", account.getPassword());
+            BODY.put("email_address", account.getEmail_address());
+
+
+            //TODO: Missing functionality is adding a callback, and failer response
+            caller = VolleyService.getInstance(context, mResultCallback);
+
+            //   new VolleyService(context,mResultCallback);
+            // caller = new VolleyService();
+            // caller = new VolleyService();
+            Toast.makeText(context, " TRUST ME 2", Toast.LENGTH_SHORT).show();
+            return caller.doPost(context, url, HEADERS, BODY);
+
+
         }
         catch (Exception e){
             Toast.makeText(context, "ERROR SOME THING ", Toast.LENGTH_SHORT).show();

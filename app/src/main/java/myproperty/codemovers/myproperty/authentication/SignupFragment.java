@@ -86,16 +86,14 @@ public class SignupFragment  extends BaseFragment {
         EMAIL_ADDRESS = email_address.getText().toString();
         PASSWORD = password.getText().toString();
         RE_PASSWORD = repassword.getText().toString();
-
+        authenticationConnector = AuthenticationConnector.getInstance();
         //todo: check to see that there is not empty
 
-
-        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         if(NAMES.length() <= 0 ||  EMAIL_ADDRESS.length() <= 0 || PASSWORD.length() <= 0 || RE_PASSWORD.length() <= 0 ){
             Toast.makeText(getContext(), "Fill Blanks", Toast.LENGTH_SHORT).show();
         }
-        else if (!Utilities.CheckEmailCheckEmail(emailPattern) ){
+        else if (!Utilities.CheckEmailCheckEmail(EMAIL_ADDRESS) ){
             Toast.makeText(getContext(), "Invalid Email Address ", Toast.LENGTH_SHORT).show();
         }
         else{
@@ -103,12 +101,12 @@ public class SignupFragment  extends BaseFragment {
 
 
                 _account account = new _account();
-               // account.setEmail_address(EMAIL_ADDRESS);
-                //account.setNames(NAMES);
-                //account.setPassword(PASSWORD);
+                account.setEmail_address(EMAIL_ADDRESS);
+                account.setNames(NAMES);
+                account.setPassword(PASSWORD);
 
                 Toast.makeText(getContext(), " Testing the Send of ", Toast.LENGTH_SHORT).show();
-                //  authenticationConnector.submitRegistration(getContext(),account,mResultCallback);
+                  authenticationConnector.submitRegistration(getContext(),account,mResultCallback);
             } catch (Exception e) {
                 e.printStackTrace();
                 Toast.makeText(getContext(), e.getStackTrace().toString(), Toast.LENGTH_SHORT).show();
