@@ -3,6 +3,7 @@ package myproperty.codemovers.myproperty.dashboard;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import myproperty.codemovers.myproperty.dashboard.customer.RentFragment;
 
 
 /**
@@ -19,7 +20,15 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int position) {
         // getItem is called to instantiate the fragment for the given page.
         // Return a PlaceholderFragment (defined as a static inner class below).
-        return  PlaceholderFragment.newInstance(position + 1);
+        switch (position){
+            case 0:
+                return  RentFragment.newInstance(position + 1);
+            case 1:
+                return  PlaceholderFragment.newInstance(position + 1);
+            default:
+                return  PlaceholderFragment.newInstance(position + 1);
+        }
+      //  return  PlaceholderFragment.newInstance(position + 1);
     }
 
     @Override
@@ -36,7 +45,7 @@ public class SectionsPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return "Buy";
             case 2:
-                return "Check-n";
+                return "Check-in";
         }
         return null;
     }

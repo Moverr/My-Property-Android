@@ -15,7 +15,7 @@ import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.core.BaseFragment;
 
 /**
- * Created by Manny on 8/26/2017.
+ * Created by mover on 8/26/2017.
  */
 
 public class AllCollectionsFragment extends BaseFragment {

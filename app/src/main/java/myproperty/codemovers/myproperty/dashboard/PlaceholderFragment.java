@@ -7,12 +7,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import myproperty.codemovers.myproperty.R;
+import myproperty.codemovers.myproperty.core.BaseFragment;
 
 /**
  * Created by mover on 9/17/2017.
  */
 
-public   class PlaceholderFragment extends Fragment {
+public   class PlaceholderFragment extends BaseFragment {
     /**
      * The fragment argument representing the section number for this
      * fragment.
