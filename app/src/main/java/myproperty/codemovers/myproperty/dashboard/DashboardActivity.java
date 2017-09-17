@@ -36,6 +36,8 @@ public class DashboardActivity  extends BaseActivity {
     LoginFragment loginFragment;
     SignupFragment signupFragment;
 
+    NavigationView navigationView;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,7 +76,8 @@ public class DashboardActivity  extends BaseActivity {
         toggle.syncState();
 
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener(){
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -82,6 +85,8 @@ public class DashboardActivity  extends BaseActivity {
             }
         });
 
+        //todo: Handle Manage Menu
+        manageMenu(navigationView);
 
         if (savedInstanceState == null) {
              allCollectionsFragment = AllCollectionsFragment.getInstance();
@@ -92,6 +97,8 @@ public class DashboardActivity  extends BaseActivity {
 
     @Override
     public boolean SideBarMenuHandler(MenuItem item) {
+
+
         int id = item.getItemId();
         switch (id){
             case R.id.home:
@@ -122,6 +129,15 @@ public class DashboardActivity  extends BaseActivity {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    //todo: menu engine
+    private void  manageMenu(NavigationView navigationView){
+         Menu menu = navigationView.getMenu();
+         menu.findItem(R.id.nav_gallery).setVisible(false);
+        menu.findItem(R.id.home).setVisible(false);
+
+
     }
 
 
