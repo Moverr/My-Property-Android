@@ -141,7 +141,7 @@ public class DashboardActivity  extends BaseActivity {
     }
 
 
-
+    //todo: replace whole fragments
     private void replaceFragment(Fragment fragment) {
         FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         transaction.replace(R.id.sample_content_fragment,fragment);
