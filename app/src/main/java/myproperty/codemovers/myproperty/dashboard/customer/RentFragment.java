@@ -7,7 +7,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -73,47 +75,75 @@ public class RentFragment  extends BaseFragment {
             list.add(values[i]);
         }
 
-        StableArrayAdapter  adapter = new StableArrayAdapter(getContext(),android.R.layout.simple_list_item_1,list);
+        String[] values_ = new String[list.size()];
+
+        StableArrayAdapter  adapter = new StableArrayAdapter(getContext(),android.R.layout.simple_list_item_1,list.toArray(values_));
         listView.setAdapter(adapter);
-
-
-//        ArrayList<String> list = new ArrayList<>();
-//
-//        for(int x = 0; x < values.length; x ++ ){
-//            list.add(values[x]);
-//        }
-//        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),R.layout.list_item_view,list);
-//
-
-
-
-//            textView.setText(getString(R.string.section_format, getArguments().getInt(ARG_SECTION_NUMBER)));
 
         return rootView;
     }
 
     public class StableArrayAdapter extends  ArrayAdapter<String>{
-        HashMap<String, Integer> mIdMap = new HashMap<>();
+//        HashMap<String, Integer> mIdMap = new HashMap<>();
+//
+//        public StableArrayAdapter(Context context, int textViewResourceId,
+//                                  List<String> objects) {
+//            super(context, textViewResourceId, objects);
+//            for (int i = 0; i < objects.size(); ++i) {
+//                mIdMap.put(objects.get(i), i);
+//            }
+//        }
+//
+//
+//        @Override
+//        public long getItemId(int position) {
+//            String item = getItem(position);
+//            return mIdMap.get(item);
+//        }
+//
+//        @Override
+//        public boolean hasStableIds() {
+//            return  true;
+//        }
 
-        public StableArrayAdapter(Context context, int textViewResourceId,
-                                  List<String> objects) {
-            super(context, textViewResourceId, objects);
-            for (int i = 0; i < objects.size(); ++i) {
-                mIdMap.put(objects.get(i), i);
+
+        private final Context context;
+        private final String[] values;
+
+        public StableArrayAdapter(Context context,int resourceId, String[] objects) {
+            super(context, resourceId, objects);
+            this.context = context;
+            values = new String[objects.length];
+
+
+
+            for(int i = 0; i < objects.length; i ++ ){
+                values[i] = objects[i];
             }
+          //  this.values = values;
         }
 
 
-        @Override
-        public long getItemId(int position) {
-            String item = getItem(position);
-            return mIdMap.get(item);
-        }
 
         @Override
-        public boolean hasStableIds() {
-            return  true;
+        public View getView(int position, View convertView, ViewGroup parent) {
+            LayoutInflater inflater = (LayoutInflater) context
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View rowView = inflater.inflate(R.layout.list_item_view, parent, false);
+            TextView textView = (TextView) rowView.findViewById(R.id.firstLine);
+            ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+            textView.setText(values[position]);
+            // change the icon for Windows and iPhone
+            String s = values[position];
+            if (s.startsWith("iPhone")) {
+                imageView.setImageResource(R.drawable.ic_menu_camera);
+            } else {
+                imageView.setImageResource(R.drawable.ic_menu_manage);
+            }
+
+            return rowView;
         }
+
     }
 
 
