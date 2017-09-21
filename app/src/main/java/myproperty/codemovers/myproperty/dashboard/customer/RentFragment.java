@@ -130,7 +130,7 @@ public class RentFragment  extends BaseFragment {
             LayoutInflater inflater = (LayoutInflater) context
                     .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View rowView = inflater.inflate(R.layout.list_item_view, parent, false);
-            TextView textView = (TextView) rowView.findViewById(R.id.firstLine);
+            TextView textView = (TextView) rowView.findViewById(R.id.secondLine);
             ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
             textView.setText(values[position]);
             // change the icon for Windows and iPhone
