@@ -10,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -50,6 +51,14 @@ public class RentFragment  extends BaseFragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Toast.makeText(getContext(), "FIRST TESTER", Toast.LENGTH_SHORT).show();
+        getPropertyList();
+        // get the most important data :: structure
+    }
+
+
+    public void getPropertyList(){
+
     }
 
     @Override
