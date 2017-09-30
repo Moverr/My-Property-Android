@@ -50,7 +50,7 @@ public class PropertyConnector  extends  ConnectorBase   {
     Map PARAMS = new HashMap();
     JSONObject BODY = new JSONObject();
 
-    public String get(Context context,  IResult mResultCallback) {
+    public String getPropertyList(Context context,  IResult mResultCallback) {
 
         // get list of data from localhost:
 

@@ -12,11 +12,13 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.VolleyError;
+
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
 import myproperty.codemovers.myproperty.R;
+import myproperty.codemovers.myproperty.api.services.IResult;
+import myproperty.codemovers.myproperty.connector.PropertyConnector;
 import myproperty.codemovers.myproperty.core.BaseFragment;
 
 
@@ -26,13 +28,18 @@ import myproperty.codemovers.myproperty.core.BaseFragment;
 
 public class RentFragment  extends BaseFragment {
 
+    private PropertyConnector propertyConnector;
+
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
+    IResult mResultCallback;
 
     public RentFragment() {
+        propertyConnector = propertyConnector.getInstance();
+
     }
 
     /**
@@ -52,13 +59,28 @@ public class RentFragment  extends BaseFragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Toast.makeText(getContext(), "FIRST TESTER", Toast.LENGTH_SHORT).show();
+
         getPropertyList();
         // get the most important data :: structure
     }
 
 
-    public void getPropertyList(){
 
+    public void getPropertyList(){
+        mResultCallback = new IResult() {
+            @Override
+            public void notifySuccess(String requestType, String response) {
+            //update
+                Toast.makeText(getContext(), "DID YOu KNOW ME SUCCESS ", Toast.LENGTH_SHORT).show();
+            }
+
+            @Override
+            public void notifyError(String requestType, VolleyError error) {
+                Toast.makeText(getContext(), "DID YOu KNOW ME ERROR ", Toast.LENGTH_SHORT).show();
+            }
+        };
+
+        propertyConnector.getPropertyList(getContext(),mResultCallback);
     }
 
     @Override

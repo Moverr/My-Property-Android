@@ -133,17 +133,19 @@ public class VolleyService {
 
 
     //TODO: do Get
-    public static void doGet(Context context, String url, final Map headers){
+    public   void doGet(final Context context, String url, final Map headers){
         RequestQueue queue = Volley.newRequestQueue(context);
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-
+                Toast.makeText(context, "MOVER SUCCESS", Toast.LENGTH_SHORT).show();
+                mResultCallback.notifySuccess("success",response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-
+                Toast.makeText(context, "MOVER ERROR", Toast.LENGTH_SHORT).show();
+                mResultCallback.notifyError("ERROR",error);
             }
         }){
             @Override
@@ -153,8 +155,14 @@ public class VolleyService {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                return super.getHeaders();
+                return  headers;
             }
+
+            @Override
+            public String getBodyContentType() {
+                return "application/json;";
+            }
+
         };
         queue.add(stringRequest);
     }
