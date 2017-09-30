@@ -70,8 +70,9 @@ public class RentFragment  extends BaseFragment {
         mResultCallback = new IResult() {
             @Override
             public void notifySuccess(String requestType, String response) {
-            //update
+                  //update
                 Toast.makeText(getContext(), "DID YOu KNOW ME SUCCESS ", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
             }
 
             @Override
