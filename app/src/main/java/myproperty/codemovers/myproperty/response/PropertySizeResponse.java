@@ -4,7 +4,7 @@ package myproperty.codemovers.myproperty.response;
  * Created by Manny on 9/30/2017.
  */
 
-class PropertySizeResponse {
+public class PropertySizeResponse {
 
     private Integer id;
     private String size;

@@ -3,6 +3,7 @@ package myproperty.codemovers.myproperty.dashboard.customer;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,12 +15,18 @@ import android.widget.Toast;
 
 import com.android.volley.VolleyError;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
+import java.util.Date;
 
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.api.services.IResult;
 import myproperty.codemovers.myproperty.connector.PropertyConnector;
 import myproperty.codemovers.myproperty.core.BaseFragment;
+import myproperty.codemovers.myproperty.response.PropertyResponse;
+import myproperty.codemovers.myproperty.response.PropertySizeResponse;
 
 
 /**
@@ -29,6 +36,7 @@ import myproperty.codemovers.myproperty.core.BaseFragment;
 public class RentFragment  extends BaseFragment {
 
     private PropertyConnector propertyConnector;
+    PropertyResponse propertyResponse;
 
     /**
      * The fragment argument representing the section number for this
@@ -70,9 +78,84 @@ public class RentFragment  extends BaseFragment {
         mResultCallback = new IResult() {
             @Override
             public void notifySuccess(String requestType, String response) {
-                  //update
-                Toast.makeText(getContext(), "DID YOu KNOW ME SUCCESS ", Toast.LENGTH_SHORT).show();
-                Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
+                try {
+                    //update
+                    Toast.makeText(getContext(), "DID YOu KNOW ME SUCCESS ", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
+
+                    propertyResponse = new PropertyResponse();
+                    JSONArray property = new JSONArray(response);
+
+                   // JSONObject jsonObject = new JSONObject(response);
+
+//                    Integer id = jsonObject.getInt("id");
+////                    Date dateCreated =  new Date(jsonObject.getString("dateCreated"));
+////                    Date dateUpdated =  new Date(jsonObject.getString("dateUpdated"));
+////
+//
+//                    String brief = jsonObject.getString("brief");
+//                    String details = jsonObject.getString("details");
+//                    Integer accountId = jsonObject.getInt("accountId");
+//                    Integer userId = jsonObject.getInt("userId");
+//                    String property_type = jsonObject.getString("property_type");
+
+
+//                    ArrayList<PropertySizeResponse> _propertySizeResponses = new ArrayList<>();
+//                    JSONArray propertySizeResponses = jsonObject.getJSONArray("propertySizeResponses");
+
+//                    int x = 0;
+//                    while(x < propertySizeResponses.length()){
+//                        JSONObject _propertySizeResponseObject = propertySizeResponses.getJSONObject(x);
+//                        PropertySizeResponse propertySizeResponse = new PropertySizeResponse();
+//                        propertySizeResponse.setId(_propertySizeResponseObject.getInt("id"));
+//                        propertySizeResponse.setSize(_propertySizeResponseObject.getString("size"));
+//                        propertySizeResponse.setUnitMeasure(_propertySizeResponseObject.getString("unitMeasure"));
+//                        _propertySizeResponses.add(propertySizeResponse);
+//                        x ++;
+//                    }
+
+//                      String location = jsonObject.getString("location");
+//                      String lat = jsonObject.getString("lat");
+//                      String lng = jsonObject.getString("lng");
+
+
+
+
+
+//                    Integer id = jsonObject.getInt("id");
+//                    Integer id = jsonObject.getInt("id");
+//                    Integer id = jsonObject.getInt("id");
+//                    Integer id = jsonObject.getInt("id");
+//
+
+                    /*
+                     private String brief;
+    private String status;
+    private String details;
+    private Integer accountId;
+    private Integer userId;
+    private String property_type;
+
+    private PropertySizeResponse[] propertySizeResponses;
+
+    private String location;
+    private String lat;
+    private String lng;
+
+
+                     */
+
+
+
+
+                }
+                catch (Exception em){
+                    Log.getStackTraceString(em.fillInStackTrace());
+                    Toast.makeText(getContext(), "Something went wrongn"+em.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Something went wrongn"+em.getMessage(), Toast.LENGTH_LONG).show();
+
+                }
+
             }
 
             @Override
