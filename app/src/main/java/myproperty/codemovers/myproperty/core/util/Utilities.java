@@ -21,9 +21,11 @@ public class Utilities {
 
 
     public static Date convertTimeFromMilli(Integer milliseconds) {
-        Date date = new Date(milliseconds);
+        Date date = null;
+        if(milliseconds != null) {
+              date = new Date(milliseconds);
+        }
         return date;
-
     }
 
     public static Boolean CheckEmailCheckEmail(String email_address) {

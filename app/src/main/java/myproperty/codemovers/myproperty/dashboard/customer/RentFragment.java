@@ -19,13 +19,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Objects;
 
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.api.services.IResult;
 import myproperty.codemovers.myproperty.connector.PropertyConnector;
 import myproperty.codemovers.myproperty.core.BaseFragment;
+import myproperty.codemovers.myproperty.core.util.Utilities;
 import myproperty.codemovers.myproperty.response.PropertyResponse;
 import myproperty.codemovers.myproperty.response.PropertySizeResponse;
 
@@ -89,17 +88,32 @@ public class RentFragment extends BaseFragment {
                     int counter = 0;
                     while (counter < property_list.length()) {
 
+                        PropertyResponse propertyResponse = new PropertyResponse();
+
                         JSONObject propertyObject = property_list.getJSONObject(counter);
                         Integer id = propertyObject.getInt("id");
+                        propertyResponse.setId(id);
+
                         //todo: convert from String to date
                         String date_created = propertyObject.getString("dateCreated");
+                        if (date_created != null)
+                            propertyResponse.setDateCreated(Utilities.convertTimeFromMilli(Integer.parseInt(date_created)));
                         //todo: convert from String to date
                         String dateUpdated = propertyObject.getString("dateUpdated");
+                        if (dateUpdated != null)
+                            propertyResponse.setDateUpdated(Utilities.convertTimeFromMilli(Integer.parseInt(dateUpdated)));
                         String brief = propertyObject.getString("brief");
+                        propertyResponse.setBrief(brief);
                         String details = propertyObject.getString("details");
+                        propertyResponse.setDetails(details);
                         String accountId = propertyObject.getString("accountId");
+                        if (accountId != null)
+                            propertyResponse.setAccountId(Integer.parseInt(accountId));
                         Integer userId = propertyObject.getInt("userId");
+                        propertyResponse.setUserId(userId);
+
                         String property_type = propertyObject.getString("property_type");
+                        propertyResponse.setProperty_type(property_type);
 
                         ArrayList<PropertySizeResponse> _propertySizeResponses = new ArrayList<>();
 
@@ -122,12 +136,16 @@ public class RentFragment extends BaseFragment {
                             }
 
                         }
+                        PropertySizeResponse[] propertySizeResponses = new PropertySizeResponse[_propertySizeResponses.size()];
+                        propertyResponse.setPropertySizeResponses(_propertySizeResponses.toArray(propertySizeResponses));
+
 
                         String location = propertyObject.getString("location");
+                        propertyResponse.setLocation(location);
                         String lat = propertyObject.getString("lat");
+                        propertyResponse.setLat(lat);
                         String lng = propertyObject.getString("lng");
-
-
+                        propertyResponse.setLng(lng);
 
 
                         counter++;
