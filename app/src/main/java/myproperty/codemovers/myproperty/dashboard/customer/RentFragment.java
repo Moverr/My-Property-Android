@@ -84,9 +84,53 @@ public class RentFragment  extends BaseFragment {
                     Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
 
                     propertyResponse = new PropertyResponse();
-                    JSONArray property = new JSONArray(response);
+                    JSONArray property_list = new JSONArray(response);
 
-                   // JSONObject jsonObject = new JSONObject(response);
+                    int counter  = 0;
+                    while(counter < property_list.length()){
+
+                        JSONObject propertyObject = property_list.getJSONObject(counter);
+                        Integer id = propertyObject.getInt("id");
+                        //todo: convert from String to date
+                        String date_created = propertyObject.getString("dateCreated");
+                        //todo: convert from String to date
+                        String dateUpdated = propertyObject.getString("dateUpdated");
+                        String brief = propertyObject.getString("brief");
+                        String details = propertyObject.getString("details");
+                        String accountId = propertyObject.getString("accountId");
+                        Integer userId = propertyObject.getInt("userId");
+                        String property_type = propertyObject.getString("property_type");
+
+                        ArrayList<PropertySizeResponse> _propertySizeResponses = new ArrayList<>();
+
+                        if(propertyObject.getJSONArray("propertySizeResponses") != null) {
+
+
+                            JSONArray propertySizeResponses = propertyObject.getJSONArray("propertySizeResponses");
+
+                            int x = 0;
+
+                            if (propertySizeResponses != null) {
+                                while (x < propertySizeResponses.length()) {
+                                    JSONObject _propertySizeResponseObject = propertySizeResponses.getJSONObject(x);
+                                    PropertySizeResponse propertySizeResponse = new PropertySizeResponse();
+                                    propertySizeResponse.setId(_propertySizeResponseObject.getInt("id"));
+                                    propertySizeResponse.setSize(_propertySizeResponseObject.getString("size"));
+                                    propertySizeResponse.setUnitMeasure(_propertySizeResponseObject.getString("unitMeasure"));
+                                    _propertySizeResponses.add(propertySizeResponse);
+                                    x++;
+                                }
+                            }
+                        }
+
+                       // Date dateCreated =  new Date(propertyObject.getString("dateCreated"));
+
+
+                        counter ++;
+                    }
+
+
+
 
 //                    Integer id = jsonObject.getInt("id");
 ////                    Date dateCreated =  new Date(jsonObject.getString("dateCreated"));
