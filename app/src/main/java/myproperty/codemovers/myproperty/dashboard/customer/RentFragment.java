@@ -20,6 +20,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Objects;
 
 import myproperty.codemovers.myproperty.R;
 import myproperty.codemovers.myproperty.api.services.IResult;
@@ -33,7 +34,7 @@ import myproperty.codemovers.myproperty.response.PropertySizeResponse;
  * Created by mover on 9/17/2017.
  */
 
-public class RentFragment  extends BaseFragment {
+public class RentFragment extends BaseFragment {
 
     private PropertyConnector propertyConnector;
     PropertyResponse propertyResponse;
@@ -73,8 +74,7 @@ public class RentFragment  extends BaseFragment {
     }
 
 
-
-    public void getPropertyList(){
+    public void getPropertyList() {
         mResultCallback = new IResult() {
             @Override
             public void notifySuccess(String requestType, String response) {
@@ -86,8 +86,8 @@ public class RentFragment  extends BaseFragment {
                     propertyResponse = new PropertyResponse();
                     JSONArray property_list = new JSONArray(response);
 
-                    int counter  = 0;
-                    while(counter < property_list.length()){
+                    int counter = 0;
+                    while (counter < property_list.length()) {
 
                         JSONObject propertyObject = property_list.getJSONObject(counter);
                         Integer id = propertyObject.getInt("id");
@@ -103,14 +103,13 @@ public class RentFragment  extends BaseFragment {
 
                         ArrayList<PropertySizeResponse> _propertySizeResponses = new ArrayList<>();
 
-                        if(propertyObject.getJSONArray("propertySizeResponses") != null) {
 
-
+                        Object propertySizeObject = propertyObject.get("propertySizeResponses");
+                        if (propertySizeObject instanceof JSONArray) {
                             JSONArray propertySizeResponses = propertyObject.getJSONArray("propertySizeResponses");
-
                             int x = 0;
 
-                            if (propertySizeResponses != null) {
+                            if (propertySizeResponses != null && propertySizeResponses.length() > 0) {
                                 while (x < propertySizeResponses.length()) {
                                     JSONObject _propertySizeResponseObject = propertySizeResponses.getJSONObject(x);
                                     PropertySizeResponse propertySizeResponse = new PropertySizeResponse();
@@ -121,15 +120,21 @@ public class RentFragment  extends BaseFragment {
                                     x++;
                                 }
                             }
+
                         }
 
-                       // Date dateCreated =  new Date(propertyObject.getString("dateCreated"));
+                        String location = propertyObject.getString("location");
+                        String lat = propertyObject.getString("lat");
+                        String lng = propertyObject.getString("lng");
 
 
-                        counter ++;
+
+
+                        counter++;
+
                     }
 
-
+                    // Date dateCreated =  new Date(propertyObject.getString("dateCreated"));
 
 
 //                    Integer id = jsonObject.getInt("id");
@@ -163,9 +168,6 @@ public class RentFragment  extends BaseFragment {
 //                      String lng = jsonObject.getString("lng");
 
 
-
-
-
 //                    Integer id = jsonObject.getInt("id");
 //                    Integer id = jsonObject.getInt("id");
 //                    Integer id = jsonObject.getInt("id");
@@ -190,13 +192,10 @@ public class RentFragment  extends BaseFragment {
                      */
 
 
-
-
-                }
-                catch (Exception em){
+                } catch (Exception em) {
                     Log.getStackTraceString(em.fillInStackTrace());
-                    Toast.makeText(getContext(), "Something went wrongn"+em.getMessage(), Toast.LENGTH_LONG).show();
-                    Toast.makeText(getContext(), "Something went wrongn"+em.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Something went wrongn" + em.getMessage(), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getContext(), "Something went wrongn" + em.getMessage(), Toast.LENGTH_LONG).show();
 
                 }
 
@@ -208,7 +207,7 @@ public class RentFragment  extends BaseFragment {
             }
         };
 
-        propertyConnector.getPropertyList(getContext(),mResultCallback);
+        propertyConnector.getPropertyList(getContext(), mResultCallback);
     }
 
     @Override
@@ -219,30 +218,30 @@ public class RentFragment  extends BaseFragment {
 //        TextView textView = (TextView) rootView.findViewById(R.id.txt);
 //        textView.setText("JUA KALI");
 
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+        String[] values = new String[]{"Android", "iPhone", "WindowsMobile",
                 "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
                 "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
                 "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile" };
+                "Android", "iPhone", "WindowsMobile"};
 
 
         ListView listView = (ListView) rootView.findViewById(R.id.listview);
 
         ArrayList<String> list = new ArrayList<>();
 
-        for(int i = 0; i < values.length; i ++ ){
+        for (int i = 0; i < values.length; i++) {
             list.add(values[i]);
         }
 
         String[] values_ = new String[list.size()];
 
-        StableArrayAdapter  adapter = new StableArrayAdapter(getContext(),android.R.layout.simple_list_item_1,list.toArray(values_));
+        StableArrayAdapter adapter = new StableArrayAdapter(getContext(), android.R.layout.simple_list_item_1, list.toArray(values_));
         listView.setAdapter(adapter);
 
         return rootView;
     }
 
-    public class StableArrayAdapter extends  ArrayAdapter<String>{
+    public class StableArrayAdapter extends ArrayAdapter<String> {
 //        HashMap<String, Integer> mIdMap = new HashMap<>();
 //
 //        public StableArrayAdapter(Context context, int textViewResourceId,
@@ -269,19 +268,17 @@ public class RentFragment  extends BaseFragment {
         private final Context context;
         private final String[] values;
 
-        public StableArrayAdapter(Context context,int resourceId, String[] objects) {
+        public StableArrayAdapter(Context context, int resourceId, String[] objects) {
             super(context, resourceId, objects);
             this.context = context;
             values = new String[objects.length];
 
 
-
-            for(int i = 0; i < objects.length; i ++ ){
+            for (int i = 0; i < objects.length; i++) {
                 values[i] = objects[i];
             }
-          //  this.values = values;
+            //  this.values = values;
         }
-
 
 
         @Override
@@ -304,7 +301,6 @@ public class RentFragment  extends BaseFragment {
         }
 
     }
-
 
 
 }
