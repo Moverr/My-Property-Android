@@ -121,7 +121,7 @@ public class RentFragment extends BaseFragment {
         return rootView;
     }
 
-    public class StableArrayAdapter extends  RecyclerView.Adapter{
+    public class StableArrayAdapter extends  RecyclerView.Adapter<Holder> {
             //ArrayAdapter<String> {
 //        HashMap<String, Integer> mIdMap = new HashMap<>();
 //
@@ -150,7 +150,7 @@ public class RentFragment extends BaseFragment {
         private final String[] values;
 
         public StableArrayAdapter(Context context, int resourceId, String[] objects) {
-            super(context, resourceId, objects);
+          //  super(context, resourceId, objects);
             this.context = context;
             values = new String[objects.length];
 
@@ -161,25 +161,40 @@ public class RentFragment extends BaseFragment {
             //  this.values = values;
         }
 
+        @Override
+        public Holder onCreateViewHolder(ViewGroup parent, int viewType) {
+            return null;
+        }
 
         @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.list_item_view, parent, false);
-            TextView textView = (TextView) rowView.findViewById(R.id.secondLine);
-            ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-            textView.setText(values[position]);
-            // change the icon for Windows and iPhone
-            String s = values[position];
-            if (s.startsWith("iPhone")) {
-                imageView.setImageResource(R.drawable.ic_menu_camera);
-            } else {
-                imageView.setImageResource(R.drawable.ic_menu_manage);
-            }
+        public void onBindViewHolder(Holder holder, int position) {
 
-            return rowView;
         }
+
+        @Override
+        public int getItemCount() {
+            return 0;
+        }
+
+
+        //        @Override
+//        public View getView(int position, View convertView, ViewGroup parent) {
+//            LayoutInflater inflater = (LayoutInflater) context
+//                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+//            View rowView = inflater.inflate(R.layout.list_item_view, parent, false);
+//            TextView textView = (TextView) rowView.findViewById(R.id.secondLine);
+//            ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
+//            textView.setText(values[position]);
+//            // change the icon for Windows and iPhone
+//            String s = values[position];
+//            if (s.startsWith("iPhone")) {
+//                imageView.setImageResource(R.drawable.ic_menu_camera);
+//            } else {
+//                imageView.setImageResource(R.drawable.ic_menu_manage);
+//            }
+//
+//            return rowView;
+//        }
 
     }
 

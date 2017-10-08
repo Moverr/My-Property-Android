@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by Manny on 10/8/2017.
+ * Created by mover on 10/8/2017.
  */
 
 public class Holder extends RecyclerView.ViewHolder implements View.OnClickListener {
