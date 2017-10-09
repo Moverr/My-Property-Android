@@ -40,16 +40,19 @@ import myproperty.codemovers.myproperty.response.PropertySizeResponse;
 
 public class RentFragment extends BaseFragment {
 
-    private PropertyConnector propertyConnector;
-    private PropertyResponse propertyResponse;
-    private List<PropertyResponse> propertyResponses = new ArrayList<>();
-
     /**
      * The fragment argument representing the section number for this
      * fragment.
      */
     private static final String ARG_SECTION_NUMBER = "section_number";
     IResult mResultCallback;
+    private PropertyConnector propertyConnector;
+    private PropertyResponse propertyResponse;
+    private List<PropertyResponse> propertyResponses = new ArrayList<>();
+    private RecyclerView recyclerView;
+    private Context mContext;
+    private Activity mActivity;
+
 
     public RentFragment() {
         propertyConnector = propertyConnector.getInstance();
@@ -68,46 +71,23 @@ public class RentFragment extends BaseFragment {
         return fragment;
     }
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // Toast.makeText(getContext(), "FIRST TESTER", Toast.LENGTH_SHORT).show();
-
-
-        // get the most important data :: structure
     }
-
-
-    private RecyclerView recyclerView;
-    private Context mContext;
-    private Activity mActivity;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.recycle_view, container, false);
-        //View rootView = inflater.inflate(R.layout.list_view, container, false);
-//        TextView textView = (TextView) rootView.findViewById(R.id.txt);
-//        textView.setText("JUA KALI");
-
-        String[] values = new String[]{"Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux",
-                "OS/2", "Ubuntu", "Windows7", "Max OS X", "Linux", "OS/2",
-                "Android", "iPhone", "WindowsMobile"};
-
         mContext = this.getContext();
         mActivity = this.getActivity();
 
+        //if (propertyResponses == null) {
+            getPropertyList();
+      //  }
 
-        getPropertyList();
-
-        ListView listView = (ListView) rootView.findViewById(R.id.listview);
-
-         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
-
-
+        recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         ArrayList<String> list = new ArrayList<>();
 
         if (propertyResponses != null) {
@@ -115,92 +95,13 @@ public class RentFragment extends BaseFragment {
             for (PropertyResponse propertyResponse : propertyResponses) {
                 list.add(propertyResponse.getBrief());
             }
-
         }
 
-
-//        for (int i = 0; i < values.length; i++) {
-//            list.add(values[i]);
-//        }
-
-        String[] values_ = new String[list.size()];
-
-        PropertyAdapter _adapter = new PropertyAdapter(this.getContext(),propertyResponses);
+        PropertyAdapter _adapter = new PropertyAdapter(this.getContext(), propertyResponses);
         recyclerView.setAdapter(_adapter);
         recyclerView.setHasFixedSize(true);
-
-      //  recyclerView.getAdapter().notifyDataSetChanged();
-
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
-
-     //   recyclerView.notifyAll();
-
-
-//        StableArrayAdapter adapter = new StableArrayAdapter(getContext(), android.R.layout.simple_list_item_1, list.toArray(values_));
-//        listView.setAdapter(adapter);
-
         return rootView;
-    }
-
-    public class StableArrayAdapter extends ArrayAdapter<String> {
-//        HashMap<String, Integer> mIdMap = new HashMap<>();
-//
-//        public StableArrayAdapter(Context context, int textViewResourceId,
-//                                  List<String> objects) {
-//            super(context, textViewResourceId, objects);
-//            for (int i = 0; i < objects.size(); ++i) {
-//                mIdMap.put(objects.get(i), i);
-//            }
-//        }
-//
-//
-//        @Override
-//        public long getItemId(int position) {
-//            String item = getItem(position);
-//            return mIdMap.get(item);
-//        }
-//
-//        @Override
-//        public boolean hasStableIds() {
-//            return  true;
-//        }
-
-
-        private final Context context;
-        private final String[] values;
-
-        public StableArrayAdapter(Context context, int resourceId, String[] objects) {
-            super(context, resourceId, objects);
-            this.context = context;
-            values = new String[objects.length];
-
-
-            for (int i = 0; i < objects.length; i++) {
-                values[i] = objects[i];
-            }
-            //  this.values = values;
-        }
-
-
-        @Override
-        public View getView(int position, View convertView, ViewGroup parent) {
-            LayoutInflater inflater = (LayoutInflater) context
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View rowView = inflater.inflate(R.layout.list_item_view, parent, false);
-            TextView textView = (TextView) rowView.findViewById(R.id.secondLine);
-            ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-            textView.setText(values[position]);
-            // change the icon for Windows and iPhone
-            String s = values[position];
-            if (s.startsWith("iPhone")) {
-                imageView.setImageResource(R.drawable.ic_menu_camera);
-            } else {
-                imageView.setImageResource(R.drawable.ic_menu_manage);
-            }
-
-            return rowView;
-        }
-
     }
 
 
@@ -289,12 +190,9 @@ public class RentFragment extends BaseFragment {
 
                     //todo : add data to view
 
-                    PropertyAdapter _adapter = new PropertyAdapter(mContext,propertyResponses);
+                    PropertyAdapter _adapter = new PropertyAdapter(mContext, propertyResponses);
                     recyclerView.setAdapter(_adapter);
                     recyclerView.setHasFixedSize(true);
-
-                    //  recyclerView.getAdapter().notifyDataSetChanged();
-
                     recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
 
                     //todo: add data to the database ::

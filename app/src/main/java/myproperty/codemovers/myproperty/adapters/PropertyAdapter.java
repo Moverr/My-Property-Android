@@ -77,6 +77,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
             // to access the context from any ViewHolder instance.
             super(itemView);
             nameTextView = (TextView) itemView.findViewById(R.id.headerText);
+            nameTextView.setTextSize(20);
             //  messageButton = (Button) itemView.findViewById(R.id.message_button);
         }
     }
