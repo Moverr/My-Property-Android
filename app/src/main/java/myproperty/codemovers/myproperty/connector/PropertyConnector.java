@@ -57,7 +57,7 @@ public class PropertyConnector  extends  ConnectorBase   {
         try {
             String url = caller.getUrl(getPropertyEndpoint);
 
-            Toast.makeText(context, " TRUST ME", Toast.LENGTH_SHORT).show();
+         //   Toast.makeText(context, " TRUST ME", Toast.LENGTH_SHORT).show();
             // Add Headers
             HEADERS.put("Content-Type", "application/json");
 

@@ -25,7 +25,7 @@
         >
 
         <TextView
-            android:id="@+id/firstLine"
+            android:id="@+id/headerText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
 

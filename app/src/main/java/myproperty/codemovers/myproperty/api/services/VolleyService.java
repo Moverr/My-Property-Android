@@ -138,13 +138,13 @@ public class VolleyService {
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                Toast.makeText(context, "MOVER SUCCESS", Toast.LENGTH_SHORT).show();
+              //  Toast.makeText(context, "MOVER SUCCESS", Toast.LENGTH_SHORT).show();
                 mResultCallback.notifySuccess("success",response);
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(context, "MOVER ERROR", Toast.LENGTH_SHORT).show();
+             //   Toast.makeText(context, "MOVER ERROR", Toast.LENGTH_SHORT).show();
                 mResultCallback.notifyError("ERROR",error);
             }
         }){
