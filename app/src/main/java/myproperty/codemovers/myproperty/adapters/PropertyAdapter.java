@@ -34,7 +34,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
     }
 
     @Override
-    public PropertyAdapter.ViewHolder   onCreateViewHolder(ViewGroup parent, int viewType) {
+    public PropertyAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
         LayoutInflater inflater = LayoutInflater.from(context);
 
@@ -55,6 +55,14 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
         TextView textView = holder.nameTextView;
         textView.setText(propertyResponse.getBrief());
 
+        textView = holder.typeTextView;
+        textView.setText("TYPE : ".concat(propertyResponse.getProperty_type()));
+
+       // textView = holder.amountTextView;
+       // textView.setText("SIZE  : ".concat(propertyResponse.get()));
+
+
+
     }
 
     @Override
@@ -68,6 +76,8 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameTextView;
+        public TextView typeTextView;
+        public TextView amountTextView;
         public Button messageButton;
 
         // We also create a constructor that accepts the entire item row
@@ -78,6 +88,10 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
             super(itemView);
             nameTextView = (TextView) itemView.findViewById(R.id.headerText);
             nameTextView.setTextSize(20);
+
+            typeTextView = (TextView) itemView.findViewById(R.id.property_type);
+            amountTextView = (TextView) itemView.findViewById(R.id.amount_and_currency);
+
             //  messageButton = (Button) itemView.findViewById(R.id.message_button);
         }
     }
