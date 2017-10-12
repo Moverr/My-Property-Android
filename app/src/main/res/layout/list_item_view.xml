@@ -48,7 +48,9 @@
             android:layout_alignWithParentIfMissing="true"
             android:gravity="center_vertical"
             android:text="Example application"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:fontFamily=""
+            />
 
 
         <TextView
