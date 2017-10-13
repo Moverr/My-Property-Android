@@ -271,9 +271,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         // creating required tables
-        db.execSQL(CREATE_TABLE_TODO);
-        db.execSQL(CREATE_TABLE_TAG);
-        db.execSQL(CREATE_TABLE_TODO_TAG);
+        db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_ROLES);
+        db.execSQL(CREATE_TABLE_USER_ROLE);
+
+
+        db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_ROLES);
+        db.execSQL(CREATE_TABLE_USER_ROLE);
+
+
+        db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_ROLES);
+        db.execSQL(CREATE_TABLE_USER_ROLE);
+
+
     }
 
     @Override
