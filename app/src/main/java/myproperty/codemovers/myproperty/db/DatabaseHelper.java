@@ -20,9 +20,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "myProperty";
 
     // Table Names
-    private static final String TABLE_TODO = "todos";
-    private static final String TABLE_TAG = "tags";
-    private static final String TABLE_TODO_TAG = "todo_tags";
+    private static final String TABLE_ACCOUNTS = "accounts";
+    private static final String TABLE_ACCOUNT_TYPES = "account_types";
+    private static final String TABLE_ADDRESS = "address";
+    private static final String TABLE_CONTACTS = "contacts";
+    private static final String TABLE_PACKAGES = "packages";
+    private static final String TABLE_PERMISSIONS = "permissions";
+    private static final String TABLE_PERMISSION_ROLE = "permission_role";
+    private static final String TABLE_PERSON = "person";
+    private static final String TABLE_PROPERTY = "property";
+    private static final String TABLE_PROPERTY_CLASSIFICATION = "property_classification";
+    private static final String TABLE_PROPERTY_SIZE = "property_size";
+    private static final String TABLE_PROPERTY_TYPES = "property_types";
+    private static final String TABLE_ROLES = "roles";
+    private static final String TABLE_USER = "user";
+    private static final String TABLE_USER_ROLE = "user_role";
+
+
+
 
     // Common column names
     private static final String KEY_ID = "id";
@@ -41,7 +56,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     // Table Create Statements
     // Todo table create statement
-    private static final String CREATE_TABLE_TODO = "CREATE TABLE "
+    private static final String CREATE_TABLE_TODO = "CREATE TABLE IF NOT EXISTS "
             + TABLE_TODO + "(" + KEY_ID + " INTEGER PRIMARY KEY," + KEY_TODO
             + " TEXT," + KEY_STATUS + " INTEGER," + KEY_CREATED_AT
             + " DATETIME" + ")";
