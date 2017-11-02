@@ -8,7 +8,7 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Mover on 10/12/2017.
  */
 
-public class DatabaseHelper extends SQLiteOpenHelper {
+public  class DatabaseHelper extends SQLiteOpenHelper  implements DatabaseHelperInt {
     //SQLiteOpenHelper
     // Logcat tag
     private static final String LOG = "DatabaseHelper";
@@ -322,10 +322,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
 
 
-
-
-
         // create new tables
         onCreate(db);
     }
+
+
+
 }

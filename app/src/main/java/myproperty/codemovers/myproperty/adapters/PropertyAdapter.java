@@ -8,12 +8,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 import myproperty.codemovers.myproperty.R;
-import myproperty.codemovers.myproperty.response.PropertyResponse;
+import myproperty.codemovers.myproperty.response.Property;
 
 /**
  * Created by Mover on 10/8/2017.
@@ -21,11 +19,11 @@ import myproperty.codemovers.myproperty.response.PropertyResponse;
 
 public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHolder> {
 
-    private List<PropertyResponse> mPropertyResponses;
+    private List<Property> mProperties;
     private Context mContext;
 
-    public PropertyAdapter(Context context, List<PropertyResponse> propertyResponses) {
-        this.mPropertyResponses = propertyResponses;
+    public PropertyAdapter(Context context, List<Property> properties) {
+        this.mProperties = properties;
         this.mContext = context;
     }
 
@@ -50,16 +48,16 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        PropertyResponse propertyResponse = mPropertyResponses.get(position);
+        Property property = mProperties.get(position);
         // Set item views based on your views and data model
         TextView textView = holder.nameTextView;
-        textView.setText(propertyResponse.getBrief());
+        textView.setText(property.getBrief());
 
         textView = holder.typeTextView;
-        textView.setText("TYPE : ".concat(propertyResponse.getProperty_type()));
+        textView.setText("TYPE : ".concat(property.getProperty_type()));
 
        // textView = holder.amountTextView;
-       // textView.setText("SIZE  : ".concat(propertyResponse.get()));
+       // textView.setText("SIZE  : ".concat(property.get()));
 
 
 
@@ -67,7 +65,7 @@ public class PropertyAdapter extends RecyclerView.Adapter<PropertyAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return mPropertyResponses.size();
+        return mProperties.size();
     }
 
     // Provide a direct reference to each of the views within a data item

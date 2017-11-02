@@ -7,7 +7,7 @@ import java.util.Date;
  * Created by mover on 9/30/2017.
  */
 
-public class PropertyResponse {
+public class Property {
 
     private Integer id;
     private Date  dateCreated;
@@ -26,10 +26,10 @@ public class PropertyResponse {
     private String lng;
 
 
-    public PropertyResponse() {
+    public Property() {
     }
 
-    public PropertyResponse(Integer id) {
+    public Property(Integer id) {
         this.id = id;
     }
 
@@ -142,7 +142,7 @@ public class PropertyResponse {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PropertyResponse that = (PropertyResponse) o;
+        Property that = (Property) o;
 
         if (id != null ? !id.equals(that.id) : that.id != null) return false;
         if (dateCreated != null ? !dateCreated.equals(that.dateCreated) : that.dateCreated != null)
@@ -187,7 +187,7 @@ public class PropertyResponse {
 
     @Override
     public String toString() {
-        return "PropertyResponse{" +
+        return "Property{" +
                 "id=" + id +
                 ", dateCreated=" + dateCreated +
                 ", dateUpdated=" + dateUpdated +

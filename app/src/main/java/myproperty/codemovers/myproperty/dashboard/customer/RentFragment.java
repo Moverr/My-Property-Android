@@ -10,14 +10,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.VolleyError;
-import com.google.gson.Gson;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -30,8 +25,7 @@ import myproperty.codemovers.myproperty.adapters.PropertyAdapter;
 import myproperty.codemovers.myproperty.api.services.IResult;
 import myproperty.codemovers.myproperty.connector.PropertyConnector;
 import myproperty.codemovers.myproperty.core.BaseFragment;
-import myproperty.codemovers.myproperty.core.util.Utilities;
-import myproperty.codemovers.myproperty.response.PropertyResponse;
+import myproperty.codemovers.myproperty.response.Property;
 import myproperty.codemovers.myproperty.response.PropertySizeResponse;
 
 
@@ -48,8 +42,8 @@ public class RentFragment extends BaseFragment {
     private static final String ARG_SECTION_NUMBER = "section_number";
     IResult mResultCallback;
     private PropertyConnector propertyConnector;
-    private PropertyResponse propertyResponse;
-    private List<PropertyResponse> propertyResponses = new ArrayList<>();
+    private Property property;
+    private List<Property> properties = new ArrayList<>();
     private RecyclerView recyclerView;
     private Context mContext;
     private Activity mActivity;
@@ -84,21 +78,21 @@ public class RentFragment extends BaseFragment {
         mContext = this.getContext();
         mActivity = this.getActivity();
 
-        //if (propertyResponses == null) {
+        //if (properties == null) {
             getPropertyList();
       //  }
 
         recyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerView);
         ArrayList<String> list = new ArrayList<>();
 
-        if (propertyResponses != null) {
+        if (properties != null) {
 
-            for (PropertyResponse propertyResponse : propertyResponses) {
-                list.add(propertyResponse.getBrief());
+            for (Property property : properties) {
+                list.add(property.getBrief());
             }
         }
 
-        PropertyAdapter _adapter = new PropertyAdapter(this.getContext(), propertyResponses);
+        PropertyAdapter _adapter = new PropertyAdapter(this.getContext(), properties);
         recyclerView.setAdapter(_adapter);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this.getActivity()));
@@ -116,40 +110,40 @@ public class RentFragment extends BaseFragment {
                     Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
 
 
-                    propertyResponse = new PropertyResponse();
+                    property = new Property();
                     JSONArray property_list = new JSONArray(response);
 
                     int counter = 0;
                     while (counter < property_list.length()) {
 
-                        PropertyResponse propertyResponse = new PropertyResponse();
+                        Property property = new Property();
 
                         JSONObject propertyObject = property_list.getJSONObject(counter);
                         Integer id = propertyObject.getInt("id");
-                        propertyResponse.setId(id);
+                        property.setId(id);
 
                         //todo: convert from String to date
 //                        String date_created = propertyObject.getString("dateCreated");
 //                        if (date_created != null)
-//                            propertyResponse.setDateCreated(Utilities.convertTimeFromMilli(Integer.parseInt(date_created)));
+//                            property.setDateCreated(Utilities.convertTimeFromMilli(Integer.parseInt(date_created)));
 //                        //todo: convert from String to date
 //                        String dateUpdated = propertyObject.getString("dateUpdated");
 //                        if (dateUpdated != null)
-//                            propertyResponse.setDateUpdated(Utilities.convertTimeFromMilli(Integer.parseInt(dateUpdated)));
+//                            property.setDateUpdated(Utilities.convertTimeFromMilli(Integer.parseInt(dateUpdated)));
 
 
                         String brief = propertyObject.getString("brief");
-                        propertyResponse.setBrief(brief);
+                        property.setBrief(brief);
                         String details = propertyObject.getString("details");
-                        propertyResponse.setDetails(details);
+                        property.setDetails(details);
                         String accountId = propertyObject.getString("accountId");
                         if (accountId != null)
-                            propertyResponse.setAccountId(Integer.parseInt(accountId));
+                            property.setAccountId(Integer.parseInt(accountId));
                         Integer userId = propertyObject.getInt("userId");
-                        // propertyResponse.setUserId(userId);
+                        // property.setUserId(userId);
 
                         String property_type = propertyObject.getString("property_type");
-                        propertyResponse.setProperty_type(property_type);
+                        property.setProperty_type(property_type);
 
                         ArrayList<PropertySizeResponse> _propertySizeResponses = new ArrayList<>();
 
@@ -173,17 +167,17 @@ public class RentFragment extends BaseFragment {
 
                         }
                         PropertySizeResponse[] propertySizeResponses = new PropertySizeResponse[_propertySizeResponses.size()];
-                        propertyResponse.setPropertySizeResponses(_propertySizeResponses.toArray(propertySizeResponses));
+                        property.setPropertySizeResponses(_propertySizeResponses.toArray(propertySizeResponses));
 
 
                         String location = propertyObject.getString("location");
-                        propertyResponse.setLocation(location);
+                        property.setLocation(location);
                         String lat = propertyObject.getString("lat");
-                        propertyResponse.setLat(lat);
+                        property.setLat(lat);
                         String lng = propertyObject.getString("lng");
-                        propertyResponse.setLng(lng);
+                        property.setLng(lng);
 
-                        propertyResponses.add(propertyResponse);
+                        properties.add(property);
 
                         counter++;
 
@@ -191,7 +185,7 @@ public class RentFragment extends BaseFragment {
 
                     //todo : add data to view
 
-                    PropertyAdapter _adapter = new PropertyAdapter(mContext, propertyResponses);
+                    PropertyAdapter _adapter = new PropertyAdapter(mContext, properties);
                     recyclerView.setAdapter(_adapter);
                     recyclerView.setHasFixedSize(true);
                     recyclerView.setLayoutManager(new LinearLayoutManager(mActivity));
