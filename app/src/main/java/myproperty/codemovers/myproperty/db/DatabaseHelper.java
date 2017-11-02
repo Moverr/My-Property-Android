@@ -291,9 +291,30 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TAG);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_TODO_TAG);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNT_TYPES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ADDRESS);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PACKAGES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERMISSIONS);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERMISSION_ROLE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERSON);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_CLASSIFICATION);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_SIZE);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_TYPES);
+
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROLES);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_ROLE);
+
+
+
+
+
 
         // create new tables
         onCreate(db);
