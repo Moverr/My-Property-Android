@@ -261,10 +261,19 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             "  CONSTRAINT `US_ROLE` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n" +
             "  CONSTRAINT `US_USER` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n" +
             ") ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='Pivot Table to Merge User and Role ';\n";
-
+    private static DatabaseHelper instance = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+    public static synchronized DatabaseHelper getInstance(Context context){
+        if(instance == null){
+            instance = new DatabaseHelper(context);
+        }
+
+        return instance;
+
     }
 
     @Override
