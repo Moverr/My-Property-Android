@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
  * Created by Manny on 11/3/2017.
  */
 
-public class Configuration extends  DatabaseHelper {
+public class Configuration extends dbHelper {
     public Configuration(Context context) {
         super(context);
     }

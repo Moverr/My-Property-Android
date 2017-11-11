@@ -8,10 +8,10 @@ import android.database.sqlite.SQLiteOpenHelper;
  * Created by Mover on 10/12/2017.
  */
 
-public  class DatabaseHelper extends SQLiteOpenHelper  implements DatabaseHelperInt {
+public  class dbHelper extends SQLiteOpenHelper  implements DatabaseHelperInt {
     //SQLiteOpenHelper
     // Logcat tag
-    private static final String LOG = "DatabaseHelper";
+    private static final String LOG = "dbHelper";
 
     // Database Version
     private static final int DATABASE_VERSION = 1;
@@ -261,16 +261,18 @@ public  class DatabaseHelper extends SQLiteOpenHelper  implements DatabaseHelper
             "  CONSTRAINT `US_ROLE` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION,\n" +
             "  CONSTRAINT `US_USER` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION\n" +
             ") ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COMMENT='Pivot Table to Merge User and Role ';\n";
-    private static DatabaseHelper instance = null;
+    private static dbHelper instance = null;
 
-    public DatabaseHelper(Context context) {
+    public dbHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
-    public static synchronized DatabaseHelper getInstance(Context context){
+    public static synchronized dbHelper getInstance(Context context){
         if(instance == null){
-            instance = new DatabaseHelper(context);
+            instance = new dbHelper(context);
         }
+
+
 
         return instance;
 
@@ -280,19 +282,35 @@ public  class DatabaseHelper extends SQLiteOpenHelper  implements DatabaseHelper
     public void onCreate(SQLiteDatabase db) {
 
         // creating required tables
-        db.execSQL(CREATE_TABLE_USER);
+        db.execSQL(CREATE_TABLE_ACCOUNTS);
+        db.execSQL(CREATE_TABLE_ACCOUNT_TYPES);
+        db.execSQL(CREATE_TABLE_ADDRESS);
+
+
+        db.execSQL(CREATE_TABLE_ACCOUNT_ACCOUNTS);
+        db.execSQL(CREATE_TABLE_ACCOUNT_PACKAGES);
+        db.execSQL(CREATE_TABLE_ACCOUNT_PERMISSIONS);
+
+        db.execSQL(CREATE_TABLE_PROPERTY_SIZE);
+        db.execSQL(CREATE_TABLE_PERSON);
+        db.execSQL(CREATE_TABLE_ACCOUNT_PERMISSION_ROLE);
+
+
+        db.execSQL(CREATE_TABLE_ACCOUNT_PERMISSION_ROLE);
+        db.execSQL(CREATE_TABLE_PERSON);
+        db.execSQL(CREATE_TABLE_PROPERTY);
+
+
+        db.execSQL(CREATE_TABLE_PROPERTY_CLASSIFICATION);
+        db.execSQL(CREATE_TABLE_PROPERTY_SIZE);
+        db.execSQL(CREATE_TABLE_PROPERTY_TYPES);
+
         db.execSQL(CREATE_TABLE_ROLES);
-        db.execSQL(CREATE_TABLE_USER_ROLE);
-
-
         db.execSQL(CREATE_TABLE_USER);
-        db.execSQL(CREATE_TABLE_ROLES);
-        db.execSQL(CREATE_TABLE_USER_ROLE);
+        db.execSQL(CREATE_TABLE_PROPERTY_TYPES);
 
 
-        db.execSQL(CREATE_TABLE_USER);
-        db.execSQL(CREATE_TABLE_ROLES);
-        db.execSQL(CREATE_TABLE_USER_ROLE);
+
 
 
     }
@@ -300,27 +318,27 @@ public  class DatabaseHelper extends SQLiteOpenHelper  implements DatabaseHelper
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         // on upgrade drop older tables
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNTS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNT_TYPES);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ADDRESS);
-
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PACKAGES);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERMISSIONS);
-
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERMISSION_ROLE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERSON);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY);
-
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_CLASSIFICATION);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_SIZE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_TYPES);
-
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROLES);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_ROLE);
-
-
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNTS);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ACCOUNT_TYPES);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ADDRESS);
+//
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PACKAGES);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERMISSIONS);
+//
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERMISSION_ROLE);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PERSON);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY);
+//
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_CLASSIFICATION);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_SIZE);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_PROPERTY_TYPES);
+//
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_ROLES);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
+//        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER_ROLE);
+//
+//
 
         // create new tables
         onCreate(db);
